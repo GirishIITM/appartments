@@ -1,0 +1,26 @@
+{
+  "name": "apartment-scraper",
+  "version": "1.0.0",
+  "description": "Apartment scraper with admin panel",
+  "main": "scrap.js",
+  "scripts": {
+    "start": "node scrap.js",
+    "admin": "node admin-server.js",
+    "dev": "nodemon admin-server.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "scraper",
+    "apartments",
+    "admin"
+  ],
+  "author": "",
+  "license": "ISC"
+}

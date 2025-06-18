@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Configuration Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f6fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            color: #222;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .admin-panel {
+            background: #fff;
+            border-radius: 10px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e5e5e5;
+        }
+
+        .section {
+            margin-bottom: 24px;
+            padding: 0 0 16px 0;
+            border-bottom: 1px solid #ececec;
+            background: none;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h3 {
+            color: #333;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: none;
+            padding-bottom: 0;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            background: #fafbfc;
+            transition: border 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #888;
+            background: #fff;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 18px;
+        }
+
+        .btn {
+            padding: 9px 18px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background: #3b5bdb;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #adb5bd;
+            color: #fff;
+        }
+
+        .btn:hover {
+            opacity: 0.92;
+        }
+
+        .status-message {
+            margin-top: 16px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+            font-size: 15px;
+        }
+
+        .status-success {
+            background: #e6f4ea;
+            color: #256029;
+            border: 1px solid #b7e4c7;
+        }
+
+        .status-error {
+            background: #fbeaea;
+            color: #a4161a;
+            border: 1px solid #f5c2c7;
+        }
+
+        /* Logs Section Styles */
+        .logs-section {
+            margin-top: 30px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .logs-header {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .logs-actions {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .logs-area {
+            width: 100%;
+            min-height: 180px;
+            max-height: 300px;
+            font-family: monospace;
+            font-size: 13px;
+            background: #222;
+            color: #e0e0e0;
+            border-radius: 4px;
+            padding: 10px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="admin-panel">
+            <form id="configForm">
+                <div class="section">
+                    <h3>Data Settings</h3>
+                    <div class="form-group">
+                        <label for="dataBaseUrl">Base URL</label>
+                        <input type="url" id="dataBaseUrl" name="data.baseUrl">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataApartmentsEndpoint">Apartments Endpoint</label>
+                        <input type="text" id="dataApartmentsEndpoint" name="data.endpoints.apartments">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataMaxRetries">Max Retries</label>
+                        <input type="number" id="dataMaxRetries" name="data.maxRetries" min="0" max="10">
+                    </div>
+                </div>
+
+                <!-- Scraping Controls -->
+                <div class="section">
+                    <h3>Scraping Controls</h3>
+                    <div class="form-group">
+                        <label for="scrapingStatus">Status</label>
+                        <input type="text" id="scrapingStatus" readonly placeholder="Ready">
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary" onclick="runScraper()">Run Scraper Now</button>
+                        <button type="button" class="btn btn-secondary" onclick="checkScrapingStatus()">Check Status</button>
+                    </div>
+                </div>
+
+                <!-- Cron Job Management -->
+                <div class="section">
+                    <h3>Scheduled Scraping</h3>
+                    <div class="form-group">
+                        <label for="cronExpression">Cron Expression</label>
+                        <input type="text" id="cronExpression" placeholder="0 2 * * *" title="Example: 0 2 * * * (daily at 2 AM)">
+                    </div>
+                    <div class="form-group">
+                        <label for="cronStatus">Cron Job Status</label>
+                        <input type="text" id="cronStatus" readonly placeholder="Not set">
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary" onclick="setCronJob()">Set Schedule</button>
+                        <button type="button" class="btn btn-secondary" onclick="removeCronJob()">Remove Schedule</button>
+                        <button type="button" class="btn btn-secondary" onclick="checkCronStatus()">Check Cron</button>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Save Configuration</button>
+                    <button type="button" class="btn btn-secondary" onclick="loadConfig()">Reload</button>
+                </div>
+
+                <div id="statusMessage" class="status-message"></div>
+            </form>
+        </div>
+
+        <!-- Live Logs Section -->
+        <div class="logs-section">
+            <div class="logs-header">Live Scraper Logs</div>
+            <div class="logs-actions">
+                <button type="button" class="btn btn-secondary" onclick="refreshLogs()">Refresh Logs</button>
+                <button type="button" class="btn btn-secondary" onclick="toggleAutoLogs()" id="autoLogsBtn">Auto: On</button>
+            </div>
+            <pre class="logs-area" id="logsArea">Loading logs...</pre>
+        </div>
+    </div>
+
+    <script>
+        let currentConfig = {};
+
+        // Load configuration on page load
+        window.addEventListener('DOMContentLoaded', loadConfig);
+
+        async function loadConfig() {
+            try {
+                const response = await fetch('/api/config');
+                currentConfig = await response.json();
+                populateForm(currentConfig);
+                showStatus('Configuration loaded successfully', 'success');
+            } catch (error) {
+                console.error('Error loading config:', error);
+                showStatus('Error loading configuration', 'error');
+            }
+        }
+
+        function populateForm(config) {
+            document.getElementById('dataBaseUrl').value = config.data?.baseUrl || '';
+            document.getElementById('dataApartmentsEndpoint').value = config.data?.endpoints?.apartments || '';
+            document.getElementById('dataMaxRetries').value = config.data?.maxRetries || 3;
+        }
+
+        function getFormData() {
+            const config = {
+                ...currentConfig,
+                data: {
+                    ...currentConfig.data,
+                    baseUrl: document.getElementById('dataBaseUrl').value,
+                    maxRetries: Number(document.getElementById('dataMaxRetries').value),
+                    endpoints: {
+                        ...currentConfig.data?.endpoints,
+                        apartments: document.getElementById('dataApartmentsEndpoint').value
+                    }
+                }
+            };
+            return config;
+        }
+
+        document.getElementById('configForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            try {
+                const configToSave = getFormData();
+
+                const response = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(configToSave)
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    currentConfig = configToSave;
+                    showStatus('Configuration saved successfully!', 'success');
+                } else {
+                    showStatus('Error saving configuration: ' + result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error saving config:', error);
+                showStatus('Error saving configuration: ' + error.message, 'error');
+            }
+        });
+
+        // Scraping functions
+        async function runScraper() {
+            try {
+                document.getElementById('scrapingStatus').value = 'Starting...';
+                showStatus('Starting scraper...', 'success');
+
+                const response = await fetch('/api/scraper/run', {
+                    method: 'POST'
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('scrapingStatus').value = 'Running';
+                    showStatus('Scraper started successfully!', 'success');
+                } else {
+                    document.getElementById('scrapingStatus').value = 'Error';
+                    showStatus('Error starting scraper: ' + result.message, 'error');
+                }
+            } catch (error) {
+                document.getElementById('scrapingStatus').value = 'Error';
+                showStatus('Error starting scraper: ' + error.message, 'error');
+            }
+        }
+
+        async function checkScrapingStatus() {
+            try {
+                const response = await fetch('/api/scraper/status');
+                const result = await response.json();
+                
+                document.getElementById('scrapingStatus').value = result.status || 'Unknown';
+                showStatus(`Scraper status: ${result.status}`, 'success');
+            } catch (error) {
+                showStatus('Error checking scraper status: ' + error.message, 'error');
+            }
+        }
+
+        // Cron job functions
+        async function setCronJob() {
+            try {
+                const cronExpression = document.getElementById('cronExpression').value;
+                if (!cronExpression) {
+                    showStatus('Please enter a cron expression', 'error');
+                    return;
+                }
+
+                const response = await fetch('/api/cron/set', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ cronExpression })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('cronStatus').value = 'Active';
+                    showStatus('Cron job set successfully!', 'success');
+                } else {
+                    showStatus('Error setting cron job: ' + result.message, 'error');
+                }
+            } catch (error) {
+                showStatus('Error setting cron job: ' + error.message, 'error');
+            }
+        }
+
+        async function removeCronJob() {
+            try {
+                const response = await fetch('/api/cron/remove', {
+                    method: 'POST'
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('cronStatus').value = 'Not set';
+                    showStatus('Cron job removed successfully!', 'success');
+                } else {
+                    showStatus('Error removing cron job: ' + result.message, 'error');
+                }
+            } catch (error) {
+                showStatus('Error removing cron job: ' + error.message, 'error');
+            }
+        }
+
+        async function checkCronStatus() {
+            try {
+                const response = await fetch('/api/cron/status');
+                const result = await response.json();
+                
+                document.getElementById('cronStatus').value = result.status || 'Not set';
+                document.getElementById('cronExpression').value = result.cronExpression || '';
+                showStatus(`Cron status: ${result.status}`, 'success');
+            } catch (error) {
+                showStatus('Error checking cron status: ' + error.message, 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusElement = document.getElementById('statusMessage');
+            statusElement.textContent = message;
+            statusElement.className = `status-message status-${type}`;
+            statusElement.style.display = 'block';
+            
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 5000);
+        }
+
+        // --- Live Logs ---
+        let logsAuto = true;
+        let logsInterval = null;
+
+        async function fetchLogs() {
+            try {
+                const res = await fetch('/api/scraper/logs');
+                const text = await res.text();
+                document.getElementById('logsArea').textContent = text || '(No logs)';
+            } catch (e) {
+                document.getElementById('logsArea').textContent = 'Error loading logs';
+            }
+        }
+
+        function refreshLogs() {
+            fetchLogs();
+        }
+
+        function toggleAutoLogs() {
+            logsAuto = !logsAuto;
+            document.getElementById('autoLogsBtn').textContent = 'Auto: ' + (logsAuto ? 'On' : 'Off');
+            if (logsAuto) {
+                startLogsInterval();
+            } else {
+                stopLogsInterval();
+            }
+        }
+
+        function startLogsInterval() {
+            stopLogsInterval();
+            logsInterval = setInterval(fetchLogs, 3000);
+        }
+
+        function stopLogsInterval() {
+            if (logsInterval) clearInterval(logsInterval);
+            logsInterval = null;
+        }
+
+        // Start logs auto-refresh on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchLogs();
+            startLogsInterval();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "server": {
+    "port": 3000,
+    "host": "localhost"
+  },
+  "data": {
+    "baseUrl": "https://api.apartments.com",
+    "endpoints": {
+      "apartments": "/apartments_latest.json",
+      "search": "/search"
+    },
+    "refreshInterval": 300000,
+    "maxRetries": 2,
+    "timeout": 10000
+  },
+  "app": {
+    "title": "Apartment Listings - Avon, CT",
+    "description": "Find your perfect home in Avon, CT and surrounding areas",
+    "itemsPerPage": 20,
+    "enableCache": true,
+    "cacheExpiry": 3600000
+  },
+  "features": {
+    "showStats": true,
+    "showFilters": true,
+    "showMap": false,
+    "enableVirtualTours": true,
+    "show3DTours": true
+  },
+  "ui": {
+    "theme": "default",
+    "primaryColor": "#667eea",
+    "secondaryColor": "#764ba2",
+    "showLogo": true,
+    "showFooter": true
+  }
+}

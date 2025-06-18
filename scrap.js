@@ -3,6 +3,12 @@ const cheerio = require("cheerio");
 const headers = require("./header.js");
 const { exec } = require("child_process");
 
+// mkdir raw_page appartments individual_data search_data create them if they don't exist
+if (!fs.existsSync("raw_page")) fs.mkdirSync("raw_page");
+if (!fs.existsSync("appartments")) fs.mkdirSync("appartments");
+if (!fs.existsSync("individual_data")) fs.mkdirSync("individual_data");
+if (!fs.existsSync("search_data")) fs.mkdirSync("search_data");
+
 class ApartmentScrapper {
   constructor() {
     this.allApartments = [];
