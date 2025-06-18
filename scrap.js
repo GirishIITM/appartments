@@ -798,43 +798,42 @@ class ApartmentScrapper {
 
       if (listingKey) {
         console.log(
-          `Fetching individual data for apartment ${i + 1}/${
-            apartments.length
+          `Fetching individual data for apartment ${i + 1}/${apartments.length
           }: ${listingKey}`
         );
 
-        const individualResult = await this.fetchIndividualApartmentData(
-          listingKey,
-          searchCriteria
-        );
-        if (individualResult) {
-          apartment.individualData = individualResult.data;
-
-          if (individualResult.data && individualResult.data.Listing) {
-            const listing = individualResult.data.Listing;
-
-            if (listing.Address && listing.Address.Location) {
-              apartment.geoLocation = {
-                latitude: listing.Address.Location.Latitude,
-                longitude: listing.Address.Location.Longitude,
-                source: "individual-api",
-              };
-            }
-
-            if (listing.RentRollups && listing.RentRollups.length > 0) {
-              apartment.rentRollups = listing.RentRollups;
-            }
-
-            if (listing.Phones && listing.Phones.length > 0) {
-              apartment.phone.number = listing.Phones[0].PhoneNumber;
-            }
-
-            if (listing.VirtualTour) {
-              apartment.features.virtualTourUrl = listing.VirtualTour.Uri;
-            }
-          }
-        }
-
+        // const individualResult = await this.fetchIndividualApartmentData(
+        //   listingKey,
+        //   searchCriteria
+        // );
+        // if (individualResult) {
+        //   apartment.individualData = individualResult.data;
+        //
+        //   if (individualResult.data && individualResult.data.Listing) {
+        //     const listing = individualResult.data.Listing;
+        //
+        //     if (listing.Address && listing.Address.Location) {
+        //       apartment.geoLocation = {
+        //         latitude: listing.Address.Location.Latitude,
+        //         longitude: listing.Address.Location.Longitude,
+        //         source: "individual-api",
+        //       };
+        //     }
+        //
+        //     if (listing.RentRollups && listing.RentRollups.length > 0) {
+        //       apartment.rentRollups = listing.RentRollups;
+        //     }
+        //
+        //     if (listing.Phones && listing.Phones.length > 0) {
+        //       apartment.phone.number = listing.Phones[0].PhoneNumber;
+        //     }
+        //
+        //     if (listing.VirtualTour) {
+        //       apartment.features.virtualTourUrl = listing.VirtualTour.Uri;
+        //     }
+        //   }
+        // }
+        //
         if (i < apartments.length - 1) {
           await new Promise((resolve) => setTimeout(resolve, delay));
         }
