@@ -1,0 +1,143 @@
+{
+  "Title": "Avon Place",
+  "PropertyName": "Avon Place",
+  "PropertyUrl": "https://www.apartments.com/avon-place-avon-ct/577r0bq/",
+  "PropertyPhotoUrl": "https://images1.apartments.com/i2/BARPwFSSGqUvwr7Mm2Zcp58PjbzPIjxcYxe_DDqH8k8/117/avon-place-avon-ct-interior-photo.jpg",
+  "RentFormat": {
+    "Rents": "$1,725 - $2,450",
+    "Beds": "1-3 Beds",
+    "Baths": "",
+    "Size": "",
+    "Availability": "Avail. Soon",
+    "New": "New",
+    "Alert": "Alert",
+    "HasPerBed": false,
+    "Fees": "View Fees and Policies"
+  },
+  "Listing": {
+    "ListingKey": "577r0bq",
+    "Attachment": {
+      "UniqueId": 0,
+      "AttachmentId": 287007758,
+      "ContentType": "image/jpeg",
+      "Uri": "https://images1.apartments.com/i2/BARPwFSSGqUvwr7Mm2Zcp58PjbzPIjxcYxe_DDqH8k8/117/avon-place-avon-ct-interior-photo.jpg",
+      "IsUriOptimized": true,
+      "Description": "Interior Photo",
+      "SortIndex": 0,
+      "AttachmentType": 3,
+      "EntityType": 0,
+      "AltText": "Interior Photo - Avon Place"
+    },
+    "CarouselCount": 35,
+    "Amenities": 3940649397871471600,
+    "Amenities0": 3940649397871471600,
+    "Amenities1": 2814,
+    "Specialties": 24,
+    "Address": {
+      "City": "Avon",
+      "Country": "US",
+      "DeliveryAddress": "46 Avonwood Rd",
+      "PostalCode": "06001",
+      "State": "CT",
+      "Location": {
+        "Latitude": 41.79698,
+        "Longitude": -72.82834
+      },
+      "Submarket": "Avon/Burlington"
+    },
+    "IsFavorite": false,
+    "ListingType": 3,
+    "OriginalAdLevel": 2,
+    "PropertyManagementCompany": {
+      "CompanyKey": "srl3fn6",
+      "CompanyName": "Empire Realty USA Corp",
+      "IsGreystar": false
+    },
+    "Rating": 4,
+    "RentRollups": [
+      {
+        "Beds": 1,
+        "MinBaths": 1.5,
+        "MaxBaths": 1.5,
+        "LowDisplay": 1725,
+        "HighDisplay": 1850,
+        "RentPricingType": 1,
+        "MinSize": 922,
+        "MaxSize": 922
+      },
+      {
+        "Beds": 2,
+        "MinBaths": 2,
+        "MaxBaths": 2,
+        "LowDisplay": 2000,
+        "HighDisplay": 2250,
+        "RentPricingType": 1,
+        "MinSize": 1166,
+        "MaxSize": 1273
+      },
+      {
+        "Beds": 3,
+        "MinBaths": 2.5,
+        "MaxBaths": 2.5,
+        "LowDisplay": 2450,
+        "HighDisplay": 2450,
+        "RentPricingType": 1,
+        "MinSize": 1419,
+        "MaxSize": 1419
+      }
+    ],
+    "PropertyName": "Avon Place",
+    "PropertyStyle": 1,
+    "HasAvailabilities": false,
+    "Phones": [
+      {
+        "PhoneNumber": "8607642616",
+        "PhoneType": 3
+      }
+    ],
+    "CertifiedFreshDate": "2025-02-18T03:49:00-07:00",
+    "VirtualTour": {
+      "UniqueId": 0,
+      "Uri": "https://my.matterport.com/show/?m=aALUbcUbxJX",
+      "IsUriOptimized": false,
+      "SortIndex": 0,
+      "AttachmentType": 43,
+      "EntityType": 0
+    },
+    "ListingSummaryType": 0,
+    "HasLeadEmail": true,
+    "Options": 0,
+    "LanguagesSpoken": [
+      "en",
+      "es"
+    ],
+    "ExternalListingProvider": 0,
+    "ListingTypeId": 1,
+    "ApplyNowEnabled": false,
+    "HasMealsIncluded": false,
+    "IsHospitality": false,
+    "DateLatest": "2025-02-18T03:49:22.36-07:00",
+    "DateStored": "2025-06-18T06:46:27.6912868+00:00",
+    "MonetaryUnitType": 1,
+    "IsMultiFamily": true,
+    "ApartmentStyleType": 4,
+    "OverridePlacardAsPlatinum": false,
+    "UnitCount": 188,
+    "HasUnitSpecial": false,
+    "ShowContactInformation": false,
+    "IsForRentByOwner": false,
+    "ProductIds": [
+      407,
+      392,
+      384,
+      268,
+      245
+    ],
+    "IsRentByRoom": false,
+    "IsIncludeTownhomes": false,
+    "IsIncludeHouses": false,
+    "HasCityExperience": false,
+    "IsMonthlyFeesIncludedInRent": false
+  },
+  "PlacardType": 4
+}

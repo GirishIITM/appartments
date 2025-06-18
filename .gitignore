@@ -1,0 +1,6 @@
+node_modules/
+dist/
+appartments*
+raw_page*
+search_data*
+individual_data*

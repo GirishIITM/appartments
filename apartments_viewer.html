@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Listings - Avon, CT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+            color: white;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .apartments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .apartment-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .apartment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .card-address {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            white-space: nowrap;
+        }
+
+        .property-details {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .detail-item {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .features {
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .feature-badge {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .phone {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .phone:hover {
+            text-decoration: underline;
+        }
+
+        .view-listing {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .view-listing:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .placard-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .placard-diamond {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: white;
+        }
+
+        .placard-gold {
+            background: linear-gradient(45deg, #DAA520, #B8860B);
+            color: white;
+        }
+
+        .placard-silver {
+            background: linear-gradient(45deg, #C0C0C0, #A8A8A8);
+            color: white;
+        }
+
+        .placard-basic {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+
+        .placard-prosumer {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 50px 0;
+        }
+
+        .error {
+            text-align: center;
+            color: #ff6b6b;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        @media (max-width: 768px) {
+            .apartments-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                gap: 15px;
+            }
+
+            .stat-card {
+                padding: 15px 20px;
+                min-width: 120px;
+            }
+
+            .property-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .card-footer {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Apartment Listings</h1>
+            <p>Find your perfect home in Avon, CT and surrounding areas</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-number" id="totalCount">0</span>
+                <span class="stat-label">Total Listings</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="avgPrice">$0</span>
+                <span class="stat-label">Avg Price</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="timestamp">Loading...</span>
+                <span class="stat-label">Last Updated</span>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            Loading apartments...
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            Error loading apartment data. Please check the console for details.
+        </div>
+
+        <div id="apartments-container" class="apartments-grid">
+            <!-- Apartments will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        async function loadApartments() {
+            try {
+                const response = await fetch('apartments_latest.json');
+                const data = await response.json();
+                
+                document.getElementById('loading').style.display = 'none';
+                
+                // Update stats
+                document.getElementById('totalCount').textContent = data.totalApartments || data.apartments.length;
+                
+                // Calculate average price
+                const pricesWithData = data.apartments
+                    .filter(apt => apt.pricing && apt.pricing.rent)
+                    .map(apt => {
+                        const priceStr = apt.pricing.rent.replace(/[$,\s-]/g, '');
+                        const prices = priceStr.split(/to|and/).map(p => parseInt(p.trim()));
+                        return prices.filter(p => !isNaN(p));
+                    })
+                    .flat();
+                
+                if (pricesWithData.length > 0) {
+                    const avgPrice = pricesWithData.reduce((a, b) => a + b, 0) / pricesWithData.length;
+                    document.getElementById('avgPrice').textContent = '$' + Math.round(avgPrice).toLocaleString();
+                } else {
+                    document.getElementById('avgPrice').textContent = 'N/A';
+                }
+                
+                // Format timestamp
+                const timestamp = new Date(data.timestamp);
+                document.getElementById('timestamp').textContent = timestamp.toLocaleDateString();
+                
+                // Render apartments
+                renderApartments(data.apartments);
+                
+            } catch (error) {
+                console.error('Error loading apartments:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        function renderApartments(apartments) {
+            const container = document.getElementById('apartments-container');
+            container.innerHTML = '';
+
+            // Filter out apartments that only have placardType
+            const validApartments = apartments.filter(apt => 
+                apt.listingId || apt.title || apt.streetAddress
+            );
+
+            validApartments.forEach(apartment => {
+                const card = createApartmentCard(apartment);
+                container.appendChild(card);
+            });
+        }
+
+        function createApartmentCard(apartment) {
+            const card = document.createElement('div');
+            card.className = 'apartment-card';
+
+            const placardClass = apartment.placardType ? `placard-${apartment.placardType}` : 'placard-basic';
+            
+            card.innerHTML = `
+                ${apartment.placardType ? `<div class="placard-type ${placardClass}">${apartment.placardType}</div>` : ''}
+                
+                ${apartment.image && apartment.image.src ? 
+                    `<img src="${apartment.image.src}" alt="${apartment.image.alt || 'Apartment image'}" class="card-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                     <div class="image-placeholder" style="display: none;">📷 No Image Available</div>` :
+                    `<div class="image-placeholder">📷 No Image Available</div>`
+                }
+                
+                <div class="card-content">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">${apartment.title || 'Apartment Listing'}</h3>
+                            <p class="card-address">${apartment.address || apartment.streetAddress || 'Address not available'}</p>
+                        </div>
+                        ${apartment.pricing && apartment.pricing.rent ? 
+                            `<div class="price">${apartment.pricing.rent}</div>` : ''
+                        }
+                    </div>
+
+                    <div class="property-details">
+                        ${apartment.bedsBaths && apartment.bedsBaths.full ? 
+                            `<span class="detail-item">🛏️ ${apartment.bedsBaths.full}</span>` : ''
+                        }
+                        ${apartment.propertyType ? 
+                            `<span class="detail-item">🏠 ${apartment.propertyType}</span>` : ''
+                        }
+                    </div>
+
+                    <div class="features">
+                        ${apartment.features && apartment.features.has3DTour ? 
+                            `<span class="feature-badge">🏠 3D Tour</span>` : ''
+                        }
+                        ${apartment.features && apartment.features.virtualTour && apartment.features.virtualTour !== '' ? 
+                            `<span class="feature-badge">📹 Virtual Tour</span>` : ''
+                        }
+                        ${apartment.logo && apartment.logo.hasLogo ? 
+                            `<span class="feature-badge">✅ Verified</span>` : ''
+                        }
+                        ${apartment.pricing && apartment.pricing.hasFeesButton ? 
+                            `<span class="feature-badge">💰 Fee Info</span>` : ''
+                        }
+                    </div>
+
+                    <div class="card-footer">
+                        ${apartment.phone && apartment.phone.number ? 
+                            `<a href="tel:${apartment.phone.data || apartment.phone.number}" class="phone">📞 ${apartment.phone.number}</a>` :
+                            `<span style="color: #999;">Phone not available</span>`
+                        }
+                        ${apartment.url ? 
+                            `<a href="${apartment.url}" target="_blank" class="view-listing">View Listing</a>` :
+                            `<span style="color: #999;">No listing URL</span>`
+                        }
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Load apartments when page loads
+        document.addEventListener('DOMContentLoaded', loadApartments);
+    </script>
+</body>
+</html>
