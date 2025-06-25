@@ -74,7 +74,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  const filePath = "index.html";
+  const filePath = "apartments_viewer.html";
   if (fs.existsSync(filePath)) {
     res.type(getMimeType(filePath)).send(fs.readFileSync(filePath));
   } else {

@@ -291,19 +291,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Apartment Listings</h1>
-            <p>Find your perfect home in Avon, CT and surrounding areas</p>
-        </div>
-
         <div class="stats">
             <div class="stat-card">
                 <span class="stat-number" id="totalCount">0</span>
                 <span class="stat-label">Total Listings</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number" id="avgPrice">$0</span>
-                <span class="stat-label">Avg Price</span>
             </div>
             <div class="stat-card">
                 <span class="stat-number" id="timestamp">Loading...</span>
@@ -334,23 +325,6 @@
                 
                 // Update stats
                 document.getElementById('totalCount').textContent = data.totalApartments || data.apartments.length;
-                
-                // Calculate average price
-                const pricesWithData = data.apartments
-                    .filter(apt => apt.pricing && apt.pricing.rent)
-                    .map(apt => {
-                        const priceStr = apt.pricing.rent.replace(/[$,\s-]/g, '');
-                        const prices = priceStr.split(/to|and/).map(p => parseInt(p.trim()));
-                        return prices.filter(p => !isNaN(p));
-                    })
-                    .flat();
-                
-                if (pricesWithData.length > 0) {
-                    const avgPrice = pricesWithData.reduce((a, b) => a + b, 0) / pricesWithData.length;
-                    document.getElementById('avgPrice').textContent = '$' + Math.round(avgPrice).toLocaleString();
-                } else {
-                    document.getElementById('avgPrice').textContent = 'N/A';
-                }
                 
                 // Format timestamp
                 const timestamp = new Date(data.timestamp);
