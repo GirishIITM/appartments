@@ -19,8 +19,9 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .header {
@@ -175,76 +176,113 @@
             border: 1px solid #ccc;
             resize: vertical;
         }
+
+        .main-flex {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            width: 100%;
+        }
+        .admin-panel, .logs-section {
+            flex: 1 1 0;
+            min-width: 320px;
+            max-width: 100%;
+        }
+        .admin-panel {
+            margin-bottom: 0;
+        }
+        .logs-section {
+            margin-top: 0;
+        }
+        @media (max-width: 900px) {
+            .main-flex {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .admin-panel, .logs-section {
+                min-width: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="admin-panel">
-            <form id="configForm">
-                <div class="section">
-                    <h3>Data Settings</h3>
-                    <div class="form-group">
-                        <label for="dataBaseUrl">Base URL</label>
-                        <input type="url" id="dataBaseUrl" name="data.baseUrl">
+        <div class="main-flex">
+            <div class="admin-panel">
+                <form id="configForm">
+                    <div class="section">
+                        <h3>Data Settings</h3>
+                        <div class="form-group">
+                            <label for="dataBaseUrl">Base URL</label>
+                            <input type="url" id="dataBaseUrl" name="data.baseUrl">
+                        </div>
+                        <div class="form-group">
+                            <label for="dataApartmentsEndpoint">Apartments Endpoint</label>
+                            <input type="text" id="dataApartmentsEndpoint" name="data.endpoints.apartments">
+                        </div>
+                        <div class="form-group">
+                            <label for="dataMaxRetries">Max Retries</label>
+                            <input type="number" id="dataMaxRetries" name="data.maxRetries" min="0" max="10">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="dataApartmentsEndpoint">Apartments Endpoint</label>
-                        <input type="text" id="dataApartmentsEndpoint" name="data.endpoints.apartments">
-                    </div>
-                    <div class="form-group">
-                        <label for="dataMaxRetries">Max Retries</label>
-                        <input type="number" id="dataMaxRetries" name="data.maxRetries" min="0" max="10">
-                    </div>
-                </div>
 
-                <!-- Scraping Controls -->
-                <div class="section">
-                    <h3>Scraping Controls</h3>
-                    <div class="form-group">
-                        <label for="scrapingStatus">Status</label>
-                        <input type="text" id="scrapingStatus" readonly placeholder="Ready">
+                    <!-- Scraping Controls -->
+                    <div class="section">
+                        <h3>Scraping Controls</h3>
+                        <div class="form-group">
+                            <label for="scrapingStatus">Status</label>
+                            <input type="text" id="scrapingStatus" readonly placeholder="Ready">
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary" onclick="runScraper()">Run Scraper Now</button>
+                            <button type="button" class="btn btn-secondary" onclick="checkScrapingStatus()">Check Status</button>
+                        </div>
                     </div>
+
+                    <!-- Cron Job Management -->
+                    <div class="section">
+                        <h3>Scheduled Scraping</h3>
+                        <div class="form-group">
+                            <label for="cronExpression">Cron Schedule</label>
+                            <select id="cronSelect" onchange="onCronSelectChange()" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:4px;font-size:15px;background:#fafbfc;margin-bottom:6px;">
+                                <option value="">-- Select a schedule --</option>
+                                <option value="* * * * *">Every minute</option>
+                                <option value="0 * * * *">Every hour</option>
+                                <option value="0 2 * * *">Daily at 2 AM</option>
+                                <option value="0 0 * * 0">Weekly (Sunday at midnight)</option>
+                                <option value="0 0 1 * *">Monthly (1st at midnight)</option>
+                                <option value="custom">Custom...</option>
+                            </select>
+                            <input type="text" id="cronExpression" placeholder="Custom cron expression" title="Example: 0 2 * * * (daily at 2 AM)" style="margin-top:4px;">
+                        </div>
+                        <div class="form-group">
+                            <label for="cronStatus">Cron Job Status</label>
+                            <input type="text" id="cronStatus" readonly placeholder="Not set">
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary" onclick="setCronJob()">Set Schedule</button>
+                            <button type="button" class="btn btn-secondary" onclick="removeCronJob()">Remove Schedule</button>
+                            <button type="button" class="btn btn-secondary" onclick="checkCronStatus()">Check Cron</button>
+                        </div>
+                    </div>
+
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary" onclick="runScraper()">Run Scraper Now</button>
-                        <button type="button" class="btn btn-secondary" onclick="checkScrapingStatus()">Check Status</button>
+                        <button type="submit" class="btn btn-primary">Save Configuration</button>
+                        <button type="button" class="btn btn-secondary" onclick="loadConfig()">Reload</button>
                     </div>
-                </div>
 
-                <!-- Cron Job Management -->
-                <div class="section">
-                    <h3>Scheduled Scraping</h3>
-                    <div class="form-group">
-                        <label for="cronExpression">Cron Expression</label>
-                        <input type="text" id="cronExpression" placeholder="0 2 * * *" title="Example: 0 2 * * * (daily at 2 AM)">
-                    </div>
-                    <div class="form-group">
-                        <label for="cronStatus">Cron Job Status</label>
-                        <input type="text" id="cronStatus" readonly placeholder="Not set">
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-primary" onclick="setCronJob()">Set Schedule</button>
-                        <button type="button" class="btn btn-secondary" onclick="removeCronJob()">Remove Schedule</button>
-                        <button type="button" class="btn btn-secondary" onclick="checkCronStatus()">Check Cron</button>
-                    </div>
-                </div>
-
-                <div class="button-group">
-                    <button type="submit" class="btn btn-primary">Save Configuration</button>
-                    <button type="button" class="btn btn-secondary" onclick="loadConfig()">Reload</button>
-                </div>
-
-                <div id="statusMessage" class="status-message"></div>
-            </form>
-        </div>
-
-        <!-- Live Logs Section -->
-        <div class="logs-section">
-            <div class="logs-header">Live Scraper Logs</div>
-            <div class="logs-actions">
-                <button type="button" class="btn btn-secondary" onclick="refreshLogs()">Refresh Logs</button>
-                <button type="button" class="btn btn-secondary" onclick="toggleAutoLogs()" id="autoLogsBtn">Auto: On</button>
+                    <div id="statusMessage" class="status-message"></div>
+                </form>
             </div>
-            <pre class="logs-area" id="logsArea">Loading logs...</pre>
+            <!-- Live Logs Section -->
+            <div class="logs-section">
+                <div class="logs-header">Live Scraper Logs</div>
+                <div class="logs-actions">
+                    <button type="button" class="btn btn-secondary" onclick="refreshLogs()">Refresh Logs</button>
+                    <button type="button" class="btn btn-secondary" onclick="toggleAutoLogs()" id="autoLogsBtn">Auto: On</button>
+                </div>
+                <pre class="logs-area" id="logsArea">Loading logs...</pre>
+            </div>
         </div>
     </div>
 
@@ -356,12 +394,17 @@
         // Cron job functions
         async function setCronJob() {
             try {
-                const cronExpression = document.getElementById('cronExpression').value;
+                const select = document.getElementById('cronSelect');
+                let cronExpression = '';
+                if (select.value === 'custom' || select.value === '') {
+                    cronExpression = document.getElementById('cronExpression').value.trim();
+                } else {
+                    cronExpression = select.value;
+                }
                 if (!cronExpression) {
-                    showStatus('Please enter a cron expression', 'error');
+                    showStatus('Please enter or select a cron expression', 'error');
                     return;
                 }
-
                 const response = await fetch('/api/cron/set', {
                     method: 'POST',
                     headers: {
@@ -371,7 +414,6 @@
                 });
 
                 const result = await response.json();
-                
                 if (result.success) {
                     document.getElementById('cronStatus').value = 'Active';
                     showStatus('Cron job set successfully!', 'success');
@@ -406,9 +448,25 @@
             try {
                 const response = await fetch('/api/cron/status');
                 const result = await response.json();
-                
                 document.getElementById('cronStatus').value = result.status || 'Not set';
-                document.getElementById('cronExpression').value = result.cronExpression || '';
+                const cronExpr = result.cronExpression || '';
+                document.getElementById('cronExpression').value = cronExpr;
+                // Set select to match known value, else custom
+                const select = document.getElementById('cronSelect');
+                let found = false;
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === cronExpr) {
+                        select.selectedIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found && cronExpr) {
+                    select.value = 'custom';
+                    document.getElementById('cronExpression').disabled = false;
+                } else if (cronExpr) {
+                    document.getElementById('cronExpression').disabled = true;
+                }
                 showStatus(`Cron status: ${result.status}`, 'success');
             } catch (error) {
                 showStatus('Error checking cron status: ' + error.message, 'error');
@@ -468,7 +526,21 @@
         document.addEventListener('DOMContentLoaded', () => {
             fetchLogs();
             startLogsInterval();
+            document.getElementById('cronSelect').addEventListener('change', onCronSelectChange);
         });
+
+        function onCronSelectChange() {
+            const select = document.getElementById('cronSelect');
+            const input = document.getElementById('cronExpression');
+            if (select.value === 'custom' || select.value === '') {
+                input.value = '';
+                input.disabled = false;
+                input.focus();
+            } else {
+                input.value = select.value;
+                input.disabled = true;
+            }
+        }
     </script>
 </body>
 </html>

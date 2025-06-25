@@ -1,0 +1,95 @@
+Starting scrape for: https://www.apartments.com/avon-ct/
+HTML saved as raw_page/raw_page_1750824956607.html
+Fetching individual data for apartment 1/28: 57ykpgq
+Fetching individual data for apartment 2/28: m5jlxjj
+Fetching individual data for apartment 3/28: srl3fn6
+Fetching individual data for apartment 4/28: 94sg9g7
+Fetching individual data for apartment 5/28: n1clw9n
+Fetching individual data for apartment 6/28: n1clw9n
+Fetching individual data for apartment 8/28: f2x5q2v
+Extracted 28 apartments from page 1
+JSON data saved as appartments/apartments_1750824971664.json
+CSV data saved as appartments/apartments_1750824971664.csv
+
+Scraping completed!
+Total apartments extracted: 28
+Files saved: appartments/apartments_1750824971664.json, appartments/apartments_1750824971664.csv
+Starting scrape using search API...
+Fetching page 1...
+Search data saved as search_data/search_data_1750824972484.json
+Fetching individual data for apartment 1/40: s6bbey7
+Fetching individual data for apartment 2/40: 57ykpgq
+Fetching individual data for apartment 3/40: hrrw0j2
+Fetching individual data for apartment 4/40: xsbct8n
+Fetching individual data for apartment 5/40: s6bbey7
+Fetching individual data for apartment 6/40: 6ybkfrs
+Fetching individual data for apartment 7/40: 695cmks
+Fetching individual data for apartment 8/40: bd8nm39
+Fetching individual data for apartment 9/40: ytxdezt
+Fetching individual data for apartment 10/40: sem7mb5
+Fetching individual data for apartment 11/40: k31xc29
+Fetching individual data for apartment 12/40: k31xc29
+Fetching individual data for apartment 13/40: 04wp5x0
+Fetching individual data for apartment 14/40: 04wp5x0
+Fetching individual data for apartment 15/40: m5jlxjj
+Fetching individual data for apartment 16/40: 65wpymv
+Fetching individual data for apartment 17/40: tzggg79
+Fetching individual data for apartment 18/40: 6ybkfrs
+Fetching individual data for apartment 19/40: s6bbey7
+Fetching individual data for apartment 20/40: yznqlpr
+Fetching individual data for apartment 21/40: ytxdezt
+Fetching individual data for apartment 22/40: bj3mjp9
+Fetching individual data for apartment 23/40: hws92s3
+Fetching individual data for apartment 24/40: 86lrjl3
+Fetching individual data for apartment 25/40: 45ejs8l
+Fetching individual data for apartment 26/40: c8c3j4g
+Fetching individual data for apartment 27/40: 695cmks
+Fetching individual data for apartment 28/40: qzqntdx
+Fetching individual data for apartment 29/40: 45ejs8l
+Fetching individual data for apartment 30/40: 94sg9g7
+Fetching individual data for apartment 31/40: n1clw9n
+Fetching individual data for apartment 32/40: n1clw9n
+Fetching individual data for apartment 33/40: pq2tz1t
+Fetching individual data for apartment 34/40: 695e25r
+Fetching individual data for apartment 35/40: 6tvgk8t
+Fetching individual data for apartment 36/40: pne8s4v
+Fetching individual data for apartment 37/40: ye4b0sr
+Fetching individual data for apartment 38/40: 01v1761
+Fetching individual data for apartment 39/40: 86lrjl3
+Fetching individual data for apartment 40/40: fqjlv8r
+Extracted 40 apartments from page 1
+Fetching page 2...
+Search data saved as search_data/search_data_1750825054626.json
+Fetching individual data for apartment 1/41: f2x5q2v
+Fetching individual data for apartment 2/41: 83yjrk2
+Fetching individual data for apartment 3/41: srl3fn6
+Fetching individual data for apartment 4/41: bj3mjp9
+Fetching individual data for apartment 5/41: xsbct8n
+Fetching individual data for apartment 6/41: q7kw6fz
+Fetching individual data for apartment 10/41: wmxyyfl
+Fetching individual data for apartment 11/41: 2s18w5c
+Fetching individual data for apartment 12/41: 6ybkfrs
+Fetching individual data for apartment 13/41: 99fd166
+Fetching individual data for apartment 14/41: f2x5q2v
+Fetching individual data for apartment 15/41: 2s18w5c
+Fetching individual data for apartment 16/41: njbqnep
+Fetching individual data for apartment 17/41: 01v1761
+Fetching individual data for apartment 18/41: kdkezbb
+Fetching individual data for apartment 19/41: xge8zbn
+Fetching individual data for apartment 21/41: hesvgk1
+Extracted 41 apartments from page 2
+Fetching page 3...
+Search data saved as search_data/search_data_1750825092512.json
+Extracted 43 apartments from page 3
+Fetching page 4...
+Search data saved as search_data/search_data_1750825095668.json
+Extracted 40 apartments from page 4
+Fetching page 5...
+Search data saved as search_data/search_data_1750825098761.json
+Extracted 40 apartments from page 5
+JSON data saved as appartments/apartments_1750825101571.json
+CSV data saved as appartments/apartments_1750825101571.csv
+
+Scraping completed!
+Total apartments extracted: 232
+Files saved: appartments/apartments_1750825101571.json, appartments/apartments_1750825101571.csv

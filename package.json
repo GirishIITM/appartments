@@ -2,11 +2,12 @@
   "name": "apartment-scraper",
   "version": "1.0.0",
   "description": "Apartment scraper with admin panel",
-  "main": "scrap.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node scrap.js",
+    "start": "node server.js",
     "admin": "node admin-server.js",
-    "dev": "nodemon admin-server.js"
+    "dev": "nodemon admin-server.js",
+    "vercel-build": "echo 'No build step required'"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
