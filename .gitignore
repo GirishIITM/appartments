@@ -4,3 +4,5 @@ appartments*
 raw_page*
 search_data*
 individual_data*
+.vercel
+.env

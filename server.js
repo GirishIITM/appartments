@@ -74,6 +74,14 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
+  const filePath = "admin.html";
+  if (fs.existsSync(filePath)) {
+    res.type(getMimeType(filePath)).send(fs.readFileSync(filePath));
+  } else {
+    res.status(404).send("File not found");
+  }
+});
+app.get("/view", (req, res) => {
   const filePath = "apartments_viewer.html";
   if (fs.existsSync(filePath)) {
     res.type(getMimeType(filePath)).send(fs.readFileSync(filePath));
@@ -90,7 +98,13 @@ app.get(["/admin", "/admin.html"], (req, res) => {
   }
 });
 app.get("/api/config", (req, res) => {
-  res.type("application/json").send(JSON.stringify(config, null, 2));
+  try {
+    // Always reload config to reflect latest file changes
+    loadConfig();
+    res.type("application/json").send(JSON.stringify(config, null, 2));
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Failed to load configuration", error: err.message });
+  }
 });
 app.post("/api/config", (req, res) => {
   try {
@@ -118,16 +132,11 @@ app.post("/api/scraper/run", (req, res) => {
   res.json({ success: true, message: "Scraper started successfully" });
 });
 app.get("/api/scraper/logs", (req, res) => {
-  const logs = tailFile(SCRAPER_LOG_FILE, 100);
-  res.type("text/plain").send(logs);
-});
-app.use(express.static(process.cwd()));
-app.use((req, res) => {
-  const filePath = req.path.slice(1) || "index.html";
-  if (fs.existsSync(filePath)) {
-    res.type(getMimeType(filePath)).send(fs.readFileSync(filePath));
-  } else {
-    res.status(404).send("File not found");
+  try {
+    const logs = tailFile(SCRAPER_LOG_FILE, 100);
+    res.type("text/plain").status(200).send(logs || "(No logs)");
+  } catch (err) {
+    res.type("text/plain").status(200).send("(No logs)");
   }
 });
 
@@ -135,3 +144,6 @@ app.listen(port, host, () => {
   console.log(`Server running at http://${host}:${port}`);
   console.log(`Admin panel: http://${host}:${port}/admin`);
 });
+
+// Export the app for Vercel or other serverless platforms
+module.exports = app;

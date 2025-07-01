@@ -1,5 +1,4 @@
-// This file now serves as a compatibility layer for the modular scraper
-const { ApartmentScrapper } = require("./scrap/apartment-scraper");
+const { ApartmentScrapper } = require("./apartment-scraper");
 
 async function main() {
   const scraper = new ApartmentScrapper();
@@ -41,7 +40,7 @@ async function main() {
   await scraper.scrapeWithSearchAPI(searchCriteria, 5, true);
 }
 
-module.exports = ApartmentScrapper;
+module.exports = { ApartmentScrapper };
 
 if (require.main === module) {
   main().catch(console.error);

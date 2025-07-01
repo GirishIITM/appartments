@@ -318,7 +318,7 @@
     <script>
         async function loadApartments() {
             try {
-                const response = await fetch('apartments_latest.json');
+                const response = await fetch('/apartments_latest.json');
                 const data = await response.json();
                 
                 document.getElementById('loading').style.display = 'none';

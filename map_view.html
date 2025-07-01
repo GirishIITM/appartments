@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Map View - Avon, CT</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f6fa;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        #map {
+            height: calc(100vh - 120px);
+            width: 100%;
+        }
+
+        .popup-content {
+            max-width: 300px;
+        }
+
+        .popup-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .popup-address {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .popup-details {
+            display: flex;
+            gap: 15px;
+            margin: 8px 0;
+            flex-wrap: wrap;
+        }
+
+        .popup-detail {
+            background: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .popup-price {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1rem;
+            margin: 8px 0;
+        }
+
+        .popup-phone {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .popup-phone:hover {
+            text-decoration: underline;
+        }
+
+        .popup-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        .popup-link:hover {
+            opacity: 0.9;
+        }
+
+        .placard-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .placard-diamond {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: white;
+        }
+
+        .placard-gold {
+            background: linear-gradient(45deg, #DAA520, #B8860B);
+            color: white;
+        }
+
+        .placard-silver {
+            background: linear-gradient(45deg, #C0C0C0, #A8A8A8);
+            color: white;
+        }
+
+        .placard-basic {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+
+        .placard-prosumer {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 2000;
+        }
+
+        /* Custom marker styles */
+        .custom-marker {
+            background: #667eea;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .marker-diamond {
+            background: #FFD700;
+        }
+
+        .marker-gold {
+            background: #DAA520;
+        }
+
+        .marker-silver {
+            background: #C0C0C0;
+        }
+
+        .marker-basic {
+            background: #6c757d;
+        }
+
+        .marker-prosumer {
+            background: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Apartment Locations Map</h1>
+        <p>Avon, CT and surrounding areas</p>
+    </div>
+
+    <div class="stats-bar">
+        <div>
+            <span id="totalMarkers">0</span> apartments shown on map
+        </div>
+        <div>
+            <span id="lastUpdated">Loading...</span>
+        </div>
+    </div>
+
+
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        let map;
+        let markersGroup;
+
+        // Initialize map
+        function initMap() {
+            // Center on Avon, CT area
+            map = L.map('map').setView([41.79142, -72.86246], 11);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+
+            // Create markers group
+            markersGroup = L.layerGroup().addTo(map);
+        }
+
+        // Parse CSV data
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.replace(/"/g, ''));
+            const apartments = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const values = parseCSVLine(lines[i]);
+                if (values.length === headers.length) {
+                    const apartment = {};
+                    headers.forEach((header, index) => {
+                        apartment[header] = values[index];
+                    });
+                    apartments.push(apartment);
+                }
+            }
+
+            return apartments;
+        }
+
+        // Parse CSV line handling quoted values
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        current += '"';
+                        i++; // Skip next quote
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            
+            values.push(current);
+            return values;
+        }
+
+        // Create marker popup content
+        function createPopupContent(apartment) {
+            const placardClass = apartment.placardType ? `placard-${apartment.placardType}` : 'placard-basic';
+            
+            return `
+                <div class="popup-content">
+                    ${apartment.placardType ? `<div class="placard-badge ${placardClass}">${apartment.placardType}</div>` : ''}
+                    
+                    <div class="popup-title">${apartment.title || 'Apartment Listing'}</div>
+                    
+                    ${apartment.address ? `<div class="popup-address">${apartment.address}</div>` : ''}
+                    
+                    ${apartment.rent ? `<div class="popup-price">${apartment.rent}</div>` : ''}
+                    
+                    <div class="popup-details">
+                        ${apartment.beds ? `<span class="popup-detail">🛏️ ${apartment.beds} beds</span>` : ''}
+                        ${apartment.baths ? `<span class="popup-detail">🚿 ${apartment.baths} baths</span>` : ''}
+                        ${apartment.sqft ? `<span class="popup-detail">📐 ${apartment.sqft} sq ft</span>` : ''}
+                        ${apartment.propertyType ? `<span class="popup-detail">🏠 ${apartment.propertyType}</span>` : ''}
+                    </div>
+                    
+                    ${apartment.phone ? `<div><a href="tel:${apartment.phone}" class="popup-phone">📞 ${apartment.phone}</a></div>` : ''}
+                    
+                    ${apartment.url ? `<a href="${apartment.url}" target="_blank" class="popup-link">View Listing</a>` : ''}
+                </div>
+            `;
+        }
+
+        // Create custom marker icon
+        function createMarkerIcon(apartment) {
+            const markerClass = apartment.placardType ? `marker-${apartment.placardType}` : 'custom-marker';
+            
+            return L.divIcon({
+                className: `custom-marker ${markerClass}`,
+                iconSize: [25, 25],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -12]
+            });
+        }
+
+        // Add apartments to map
+        function addApartmentsToMap(apartments) {
+            let validCount = 0;
+
+            apartments.forEach(apartment => {
+                const lat = parseFloat(apartment.latitude);
+                const lng = parseFloat(apartment.longitude);
+
+                // Skip if no valid coordinates
+                if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
+                    return;
+                }
+
+                // Skip if coordinates are placeholder values
+                if (lat === 41.7579 && lng === -72.79674) {
+                    return;
+                }
+
+                const marker = L.marker([lat, lng], {
+                    icon: createMarkerIcon(apartment)
+                });
+
+                marker.bindPopup(createPopupContent(apartment));
+                markersGroup.addLayer(marker);
+                validCount++;
+            });
+
+            // Update stats
+            document.getElementById('totalMarkers').textContent = validCount;
+            
+            // Fit map to show all markers if we have any
+            if (validCount > 0) {
+                map.fitBounds(markersGroup.getBounds(), { padding: [20, 20] });
+            }
+        }
+
+        // Load and display apartments
+        async function loadApartments() {
+            try {
+                const response = await fetch('apartments_latest.csv');
+                const csvText = await response.text();
+                
+                const apartments = parseCSV(csvText);
+                addApartmentsToMap(apartments);
+                
+                // Update last updated time
+                const lastUpdated = apartments.length > 0 && apartments[0].timestamp 
+                    ? new Date(apartments[0].timestamp).toLocaleString()
+                    : 'Unknown';
+                document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdated}`;
+                
+                document.getElementById('loading').style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error loading apartments:', error);
+            }
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            loadApartments();
+        });
+    </script>
+</body>
+</html>
