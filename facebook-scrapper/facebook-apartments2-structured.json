@@ -1,0 +1,477 @@
+{
+  "listings": [
+    {
+      "id": "1961295781344666",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,735",
+        "amount": 1735,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "cityPageId": "103799809658833",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/514067843_10229482766358235_5770443906432516407_n.jpg?stp=c0.169.1537.1537a_dst-jpg_tt6&cstp=mx1537x1537&ctp=s261x260&_nc_cat=100&ccb=1-7&_nc_sid=454cf4&_nc_ohc=X1l_Mc8Yu_8Q7kNvwGs191k&_nc_oc=AdlJ84B1-u3wRgocIloZ2bqYJRFFJK9mkk7wyHlwJb9jDkwqqghS_-USlioMLSJkfqo&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfNCpHPsYaRET2xl6WfxEh83rk0kyDns0yVVaraPmo9vKw&oe=686A90AA",
+          "id": "10229482765398211"
+        }
+      ],
+      "seller": {
+        "name": "Todd Binette",
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null,
+      "storyKey": "24015689788051145",
+      "tracking": "{\"qid\":\"-8769525794341158311\",\"mf_story_key\":\"24015689788051145\",\"commerce_rank_obj\":\"{\\\"target_id\\\":24015689788051145,\\\"target_type\\\":0,\\\"primary_position\\\":0,\\\"ranking_signature\\\":4871092637651607990,\\\"commerce_channel\\\":504,\\\"value\\\":0.0011611411619976,\\\"candidate_retrieval_source_map\\\":{\\\"24015689788051145\\\":204}}\"}"
+    },
+    {
+      "id": "1433203414530550",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,700",
+        "amount": 1700,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "cityPageId": "103799809658833",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/506844258_23877378328578374_7953138683317688343_n.jpg?stp=c194.0.761.761a_dst-jpg_tt6&cstp=mx761x761&ctp=s261x260&_nc_cat=103&ccb=1-7&_nc_sid=454cf4&_nc_ohc=zRY8J7hhnmEQ7kNvwFHXfLK&_nc_oc=AdmpjIdHvMT5P69mLbuThLR-cHSXnE36oJqYPUg85m7dOkraxz633oC7kgUEq6-GvMc&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfOvGV1FspjLr2A4wqGu5qCC3ctQmZEg7b_wQoHfbPhucA&oe=686A8EB6",
+          "id": "23877378291911711"
+        }
+      ],
+      "seller": {
+        "name": "SaiSiddu Mudhiraj",
+        "id": "100001986234308"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null,
+      "storyKey": "24112655861701264",
+      "tracking": "{\"qid\":\"-8769525794341158311\",\"mf_story_key\":\"24112655861701264\",\"commerce_rank_obj\":\"{\\\"target_id\\\":24112655861701264,\\\"target_type\\\":0,\\\"primary_position\\\":1,\\\"ranking_signature\\\":4871092637651607990,\\\"commerce_channel\\\":504,\\\"value\\\":0.00091730290348026,\\\"candidate_retrieval_source_map\\\":{\\\"24112655861701264\\\":204}}\"}"
+    },
+    {
+      "id": "1550879532256723",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,795",
+        "amount": 1795,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "cityPageId": "103799809658833",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/493724354_10228631634280465_4269538490340169789_n.jpg?stp=c0.169.1537.1537a_dst-jpg_tt6&cstp=mx1537x1537&ctp=s261x260&_nc_cat=100&ccb=1-7&_nc_sid=454cf4&_nc_ohc=PaIStY943_gQ7kNvwFd_B0a&_nc_oc=AdlYv7mff9CAhX_-TatApzIdelBznJOk6FMyVWDjdSuXlTh7a7OIyTrlV74I0lcytt8&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfN9NaCxCUS1N_UpVYgW_QI-Eo9zCfsZzxpjYXbanh5JHg&oe=686A9EE1",
+          "id": "10228287429195553"
+        }
+      ],
+      "seller": {
+        "name": "Todd Binette",
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null,
+      "storyKey": "9451100528337422",
+      "tracking": "{\"qid\":\"-8769525794341158311\",\"mf_story_key\":\"9451100528337422\",\"commerce_rank_obj\":\"{\\\"target_id\\\":9451100528337422,\\\"target_type\\\":0,\\\"primary_position\\\":5,\\\"ranking_signature\\\":4871092637651607990,\\\"commerce_channel\\\":504,\\\"value\\\":0.0001728261665877,\\\"candidate_retrieval_source_map\\\":{\\\"9451100528337422\\\":204}}\"}"
+    },
+    {
+      "id": "649429134366055",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,990",
+        "amount": 1990,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "cityPageId": "103799809658833",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/495305493_10228779478016466_3913282297310765086_n.jpg?stp=c0.169.1537.1537a_dst-jpg_tt6&cstp=mx1537x1537&ctp=s261x260&_nc_cat=109&ccb=1-7&_nc_sid=454cf4&_nc_ohc=Y4uAHzgah1QQ7kNvwE5wxFE&_nc_oc=AdlDlTxu_XEz_bzHzBzpBKbN_zvUgWNobZNnJUci6RnFifNY28au9koKDGa8SqmH_CA&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfPFwQhzVQwIzxbXk9zhGOQ6nPCNHDH2ZL-j7EPtvWjt2A&oe=686AAB7A",
+          "id": "10228440312897550"
+        }
+      ],
+      "seller": {
+        "name": "Todd Binette",
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null,
+      "storyKey": "9645923165451607",
+      "tracking": "{\"qid\":\"-8769525794341158311\",\"mf_story_key\":\"9645923165451607\",\"commerce_rank_obj\":\"{\\\"target_id\\\":9645923165451607,\\\"target_type\\\":0,\\\"primary_position\\\":6,\\\"ranking_signature\\\":4871092637651607990,\\\"commerce_channel\\\":504,\\\"value\\\":0.0001728251665877,\\\"candidate_retrieval_source_map\\\":{\\\"9645923165451607\\\":204}}\"}"
+    },
+    {
+      "id": "646221938441830",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,700",
+        "amount": 1700,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "cityPageId": "103799809658833",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/508397782_717000597949447_9041083607033952517_n.jpg?stp=c194.0.761.761a_dst-jpg_tt6&cstp=mx761x761&ctp=s261x260&_nc_cat=101&ccb=1-7&_nc_sid=454cf4&_nc_ohc=6MFSZf6nQn4Q7kNvwEo00P-&_nc_oc=Adkc9KDUlqCqLlHSuGqOkqXcXFnWRkt90G_G-m30pWKtFTX6NTYN9Jg5YMexa9-71l4&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfPiMVxNPDAMbITksFOrPETmOSe8CchSCXyQbZB6V7IWOw&oe=686A95E6",
+          "id": "717000571282783"
+        }
+      ],
+      "seller": {
+        "name": "Princes Chitti",
+        "id": "100089185384865"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null,
+      "storyKey": "24360647756875241",
+      "tracking": "{\"qid\":\"-8769525794341158311\",\"mf_story_key\":\"24360647756875241\",\"commerce_rank_obj\":\"{\\\"target_id\\\":24360647756875241,\\\"target_type\\\":0,\\\"primary_position\\\":7,\\\"ranking_signature\\\":4871092637651607990,\\\"commerce_channel\\\":504,\\\"value\\\":0.0001728241665877,\\\"candidate_retrieval_source_map\\\":{\\\"24360647756875241\\\":204}}\"}"
+    },
+    {
+      "id": "667217705903906",
+      "title": "2 Beds 2 Baths - Apartment",
+      "price": {
+        "formatted": "$2,095",
+        "amount": 2095,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "cityPageId": "103799809658833",
+        "address": "Avon, CT"
+      },
+      "description": "2 bedrooms · 2 bathrooms",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/495435090_10228779766103668_3715025789726169356_n.jpg?stp=c0.169.1537.1537a_dst-jpg_tt6&cstp=mx1537x1537&ctp=s261x260&_nc_cat=103&ccb=1-7&_nc_sid=454cf4&_nc_ohc=_XwR8hpn1-oQ7kNvwH4Rlwh&_nc_oc=Adkfg0nbHzDNoUA0VR6o-WT-ZfA4xZvvM3QsQD9x9uKem3zz9ZocZMaeM4rk-oIhqjk&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfMmY-qjt24Ih7D-YyVE0QnSwig_QXrrIOHkRwTDwHBUbw&oe=686A9B65",
+          "id": "10228440606384887"
+        }
+      ],
+      "seller": {
+        "name": "Todd Binette",
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null,
+      "storyKey": "8610990299003455",
+      "tracking": "{\"qid\":\"-8769525794341158311\",\"mf_story_key\":\"8610990299003455\",\"commerce_rank_obj\":\"{\\\"target_id\\\":8610990299003455,\\\"target_type\\\":0,\\\"primary_position\\\":12,\\\"ranking_signature\\\":4871092637651607990,\\\"commerce_channel\\\":504,\\\"value\\\":0.0001728191665877,\\\"candidate_retrieval_source_map\\\":{\\\"8610990299003455\\\":204}}\"}"
+    },
+    {
+      "id": "1961295781344666",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,735",
+        "amount": 1735,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/514067843_10229482766358235_5770443906432516407_n.jpg?stp=c0.169.1537.1537a_dst-jpg_tt6&cstp=mx1537x1537&ctp=s261x260&_nc_cat=100&ccb=1-7&_nc_sid=454cf4&_nc_ohc=X1l_Mc8Yu_8Q7kNvwGs191k&_nc_oc=AdlJ84B1-u3wRgocIloZ2bqYJRFFJK9mkk7wyHlwJb9jDkwqqghS_-USlioMLSJkfqo&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfNCpHPsYaRET2xl6WfxEh83rk0kyDns0yVVaraPmo9vKw&oe=686A90AA"
+        }
+      ],
+      "seller": {
+        "name": "Todd Binette",
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "1433203414530550",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,700",
+        "amount": 1700,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/506844258_23877378328578374_7953138683317688343_n.jpg?stp=c194.0.761.761a_dst-jpg_tt6&cstp=mx761x761&ctp=s261x260&_nc_cat=103&ccb=1-7&_nc_sid=454cf4&_nc_ohc=zRY8J7hhnmEQ7kNvwFHXfLK&_nc_oc=AdmpjIdHvMT5P69mLbuThLR-cHSXnE36oJqYPUg85m7dOkraxz633oC7kgUEq6-GvMc&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfOvGV1FspjLr2A4wqGu5qCC3ctQmZEg7b_wQoHfbPhucA&oe=686A8EB6"
+        }
+      ],
+      "seller": {
+        "name": "SaiSiddu Mudhiraj",
+        "id": "100001986234308"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "1550879532256723",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,795",
+        "amount": 1795,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/493724354_10228631634280465_4269538490340169789_n.jpg?stp=c0.169.1537.1537a_dst-jpg_tt6&cstp=mx1537x1537&ctp=s261x260&_nc_cat=100&ccb=1-7&_nc_sid=454cf4&_nc_ohc=PaIStY943_gQ7kNvwFd_B0a&_nc_oc=AdlYv7mff9CAhX_-TatApzIdelBznJOk6FMyVWDjdSuXlTh7a7OIyTrlV74I0lcytt8&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfN9NaCxCUS1N_UpVYgW_QI-Eo9zCfsZzxpjYXbanh5JHg&oe=686A9EE1"
+        }
+      ],
+      "seller": {
+        "name": "Todd Binette",
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "649429134366055",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,990",
+        "amount": 1990,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/495305493_10228779478016466_3913282297310765086_n.jpg?stp=c0.169.1537.1537a_dst-jpg_tt6&cstp=mx1537x1537&ctp=s261x260&_nc_cat=109&ccb=1-7&_nc_sid=454cf4&_nc_ohc=Y4uAHzgah1QQ7kNvwE5wxFE&_nc_oc=AdlDlTxu_XEz_bzHzBzpBKbN_zvUgWNobZNnJUci6RnFifNY28au9koKDGa8SqmH_CA&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfPFwQhzVQwIzxbXk9zhGOQ6nPCNHDH2ZL-j7EPtvWjt2A&oe=686AAB7A"
+        }
+      ],
+      "seller": {
+        "name": "Todd Binette",
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "646221938441830",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,700",
+        "amount": 1700,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/508397782_717000597949447_9041083607033952517_n.jpg?stp=c194.0.761.761a_dst-jpg_tt6&cstp=mx761x761&ctp=s261x260&_nc_cat=101&ccb=1-7&_nc_sid=454cf4&_nc_ohc=6MFSZf6nQn4Q7kNvwEo00P-&_nc_oc=Adkc9KDUlqCqLlHSuGqOkqXcXFnWRkt90G_G-m30pWKtFTX6NTYN9Jg5YMexa9-71l4&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfPiMVxNPDAMbITksFOrPETmOSe8CchSCXyQbZB6V7IWOw&oe=686A95E6"
+        }
+      ],
+      "seller": {
+        "name": "Princes Chitti",
+        "id": "100089185384865"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "667217705903906",
+      "title": "2 Beds 2 Baths - Apartment",
+      "price": {
+        "formatted": "$2,095",
+        "amount": 2095,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "address": "Avon, CT"
+      },
+      "description": "2 bedrooms · 2 bathrooms",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/495435090_10228779766103668_3715025789726169356_n.jpg?stp=c0.169.1537.1537a_dst-jpg_tt6&cstp=mx1537x1537&ctp=s261x260&_nc_cat=103&ccb=1-7&_nc_sid=454cf4&_nc_ohc=_XwR8hpn1-oQ7kNvwH4Rlwh&_nc_oc=Adkfg0nbHzDNoUA0VR6o-WT-ZfA4xZvvM3QsQD9x9uKem3zz9ZocZMaeM4rk-oIhqjk&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=CO5i8czRhbGwq1dUgSlYAA&oh=00_AfMmY-qjt24Ih7D-YyVE0QnSwig_QXrrIOHkRwTDwHBUbw&oe=686A9B65"
+        }
+      ],
+      "seller": {
+        "name": "Todd Binette",
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "1961295781344666",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": null,
+      "location": {
+        "address": "75 Avonwood Rd, Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [],
+      "seller": {
+        "id": "1373288778"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "1433203414530550",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": null,
+      "location": {
+        "address": "75 Avonwood Rd, Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom · 945 sq. ft",
+      "images": [],
+      "seller": {
+        "id": "100001986234308"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "646221938441830",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": null,
+      "location": {
+        "address": "75 Avonwood Rd, Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom · 945 sq. ft",
+      "images": [],
+      "seller": {
+        "id": "100089185384865"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    }
+  ],
+  "metadata": {
+    "extractedAt": "2025-07-02T05:43:05.432Z",
+    "source": "Facebook Marketplace",
+    "totalListings": 15
+  }
+}

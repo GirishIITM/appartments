@@ -1,0 +1,17 @@
+{
+  "name": "facebook-apartments-scraper",
+  "version": "1.0.0",
+  "description": "Extract structured apartment data from Facebook Marketplace",
+  "main": "htmltojson.js",
+  "scripts": {
+    "extract": "node htmltojson.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "csv-writer": "^1.6.0"
+  },
+  "keywords": ["facebook", "marketplace", "apartments", "scraping", "cheerio"],
+  "author": "",
+  "license": "MIT"
+}

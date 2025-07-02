@@ -1,0 +1,583 @@
+{
+  "listings": [
+    {
+      "id": "24165045776476613:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "712732854065767",
+      "title": "1 Bed 1 Bath - Apartment",
+      "price": {
+        "formatted": "$1,500",
+        "amount": 1500,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Farmington",
+        "state": "CT",
+        "displayName": "Farmington, Connecticut",
+        "address": "Farmington, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t39.30808-6/486303437_2603624413362365_1816687193897792082_n.jpg?stp=c0.318.828.828a_dst-jpg_s261x260_tt6&_nc_cat=109&ccb=1-7&_nc_sid=454cf4&_nc_ohc=iVkmOVSKYpgQ7kNvwG7Yosc&_nc_oc=AdkIG1wYPXNwkXMELfltRIcPeJjeRuqaySpc03xCgco9q_HdJ8s4fCyJQ6pLa2XLJH8&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfMSlzumCUsFjCdfWoxXK5DageOonoBsMVDFh2wtxXhvdQ&oe=686AB34A"
+        }
+      ],
+      "seller": {
+        "name": "Maria Camila",
+        "id": "100011444948507"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "24127312773560561:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "3722659034703107",
+      "title": "2 Beds 2 Baths Apartment",
+      "price": {
+        "formatted": "$1,042",
+        "amount": 1042,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "West Hartford",
+        "state": "CT",
+        "displayName": "West Hartford, Connecticut",
+        "address": "West Hartford, CT"
+      },
+      "description": "2 bedrooms · 2 bathrooms",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/509840478_577062925184345_307912583523874187_n.jpg?stp=c43.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=111&ccb=1-7&_nc_sid=247b10&_nc_ohc=MF1owSA39ncQ7kNvwH3tzJZ&_nc_oc=AdkSwf9zOdpKiTYuA80_65zj6e_Qa8cwqe5comluHagdSFAfXdZHM5C3MUpg8m1xg38&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfPYpJDi3x8BrYAe1x2sJ4TBTkHQR_pfHzepE3MfJ4AAHg&oe=686AA831"
+        }
+      ],
+      "seller": {
+        "name": "Kyle Sparzo",
+        "id": "693025455"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "7646999268734334:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "501473196006232",
+      "title": "2 Beds 1 Bath Apartment",
+      "price": {
+        "formatted": "$2,163",
+        "amount": 2163,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "West Hartford",
+        "state": "CT",
+        "displayName": "West Hartford, Connecticut",
+        "address": "West Hartford, CT"
+      },
+      "description": "2 bedrooms · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/459974207_1064831045352600_7368946983908567038_n.jpg?stp=c0.43.261.261a_dst-jpg_p261x260_tt6&_nc_cat=109&ccb=1-7&_nc_sid=247b10&_nc_ohc=fbLuICU3GrwQ7kNvwHRP1By&_nc_oc=AdnyIGK0TXnHpoB8tIMFaB0ZCtgJwKLVdzu_5blgCRBWVT2TJdWqRe1uXnDQkeVPSek&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfPDK03ZA2JnswPaSlHRGjSzUnEAgLHb9kEC2Cr6OZWb0A&oe=686A94A5"
+        }
+      ],
+      "seller": {
+        "name": "Alvaro Bonaguro",
+        "id": "1546963337"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "8765167150249840:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "1365024311401904",
+      "title": "1 Bed 1 Bath Apartment",
+      "price": {
+        "formatted": "$1,750",
+        "amount": 1750,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Bloomfield",
+        "state": "CT",
+        "displayName": "Bloomfield, Connecticut",
+        "address": "Bloomfield, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/484792143_1174668907143273_4502470280816827981_n.jpg?stp=c65.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=107&ccb=1-7&_nc_sid=247b10&_nc_ohc=7M0PZX4IiGYQ7kNvwEL2qwq&_nc_oc=AdnTUPHpOrBtJVhezL9yXb_ffxTrSGhnI31HeVUPjg3zjJUH7TG7gqRuJoDhjtLH3sA&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfOFtqbh_jft9oE4Kv2my-0dCrRLbwfLP3-wXXeZEPrYcA&oe=686AA07B"
+        }
+      ],
+      "seller": {
+        "name": "Samantha Andrews-Ascioti",
+        "id": "607161825"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "9629987413717744:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "990938353196573",
+      "title": "2 Beds 1 Bath Apartment",
+      "price": {
+        "formatted": "$1,975",
+        "amount": 1975,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Bloomfield",
+        "state": "CT",
+        "displayName": "Bloomfield, Connecticut",
+        "address": "Bloomfield, CT"
+      },
+      "description": "2 bedrooms · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/495041016_2424069768012639_5075429509857976239_n.jpg?stp=c43.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=102&ccb=1-7&_nc_sid=247b10&_nc_ohc=QK6jWFos7YoQ7kNvwHgi-f3&_nc_oc=Admd_uxtlBg5XQw2p8h8TXV-an2UFrzqhEA-IrV2lPP69hNmtSO1jzdidY5gTa4vlYg&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfPmDnmZLshKw9Gz0BTtLvwwzOW_29ioYbBCQWBq0hKTpw&oe=686A8218"
+        }
+      ],
+      "seller": {
+        "name": "Samantha Andrews-Ascioti",
+        "id": "607161825"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "10096463687077640:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "722298393653920",
+      "title": "1 Bed 1 Bath Apartment",
+      "price": {
+        "formatted": "$600",
+        "amount": 600,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Bloomfield",
+        "state": "CT",
+        "displayName": "Bloomfield, Connecticut",
+        "address": "Bloomfield, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/491748354_1185566816688416_247478730814424256_n.jpg?stp=c40.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=106&ccb=1-7&_nc_sid=247b10&_nc_ohc=-jg1qSCUYlAQ7kNvwGjP_GZ&_nc_oc=AdmZhyEQ5Dib1fIQ3c29yYkpddpMgHvRagPfWHRN71TnRheKXjvkD6I3Kw7IdbGrb-U&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfMD4pqqpyaHTEUuaHT8Lmu5GKYaS0r9P1ulwdeS1BqtuQ&oe=686A95C9"
+        }
+      ],
+      "seller": {
+        "name": "Joseph D. Fortune",
+        "id": "61567918738961"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "9819246624753049:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "1124453365817099",
+      "title": "2 Beds 2 Baths Apartment",
+      "price": {
+        "formatted": "$1,300",
+        "amount": 1300,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Bloomfield",
+        "state": "CT",
+        "displayName": "Bloomfield, Connecticut",
+        "address": "Bloomfield, CT"
+      },
+      "description": "2 bedrooms · 2 bathrooms",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/480408367_667063055645640_5102546367594760982_n.jpg?stp=c101.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=101&ccb=1-7&_nc_sid=247b10&_nc_ohc=ItgJ7nazhKwQ7kNvwEg8a2O&_nc_oc=Adnh_Ww-9BaJBswD7NqPwP9vZHBZZ0U81ElqTpv_2vJjemxu9dJROEsOL9PmirXOc3c&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfMmOJ7FkjMMApHWYoWwvPbfFPt7jJmrDCQQqvFecY0Omg&oe=686A7E92"
+        }
+      ],
+      "seller": {
+        "name": "Archer Craig",
+        "id": "61566838883909"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "10047402465336080:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "1172681461567059",
+      "title": "1 bed 1 bath apartment for rent !!!",
+      "price": {
+        "formatted": "$200",
+        "amount": 200,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Bloomfield",
+        "state": "CT",
+        "displayName": "Bloomfield, Connecticut"
+      },
+      "description": null,
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/501142079_2948815961956106_3913614222868975558_n.jpg?stp=c43.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=110&ccb=1-7&_nc_sid=247b10&_nc_ohc=eWoFJe3S4G0Q7kNvwEz7obH&_nc_oc=AdlAly5S1u1BBkEfjkTaq3rSLKQd54mYOY9t0q7Krc9E4rcZrjPczgoe_GiGig7rTvs&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfORFpbissPA9gJ1iOlLNBzBVBpzPu4TNuKp5WASf1epMg&oe=686AB28C"
+        }
+      ],
+      "seller": {
+        "name": "Sarah Sanchez",
+        "id": "61577764134527"
+      },
+      "category": "895487550471874",
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "9615903435160070:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "3858929364437048",
+      "title": "1 Bed 1 Bath Apartment/condo",
+      "price": {
+        "formatted": "$650",
+        "amount": 650,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "West Hartford",
+        "state": "CT",
+        "displayName": "West Hartford, Connecticut",
+        "address": "West Hartford, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/495597541_870913095199319_5681193244527403107_n.jpg?stp=c43.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=111&ccb=1-7&_nc_sid=247b10&_nc_ohc=gvMc_QLHNz4Q7kNvwGfJ95d&_nc_oc=AdnHlxJi_PKZjtfR5h9rNvFkwzHNdKeZCj_WX4tj5hsHcEK_qR5MfAKuWm4WhMS1fig&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfPF8atfix4k0JqsfXqjLaQ6Jqc2QA1OBm6bLvjNVAkzrg&oe=686A9025"
+        }
+      ],
+      "seller": {
+        "name": "Ayesha Sophia",
+        "id": "61575760777031"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "23947548548232359:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "960463402772718",
+      "title": "Apartment for Rent : 1 Bed 1 Bathroom",
+      "price": {
+        "formatted": "$700",
+        "amount": 700,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Farmington",
+        "state": "CT",
+        "displayName": "Farmington, Connecticut"
+      },
+      "description": null,
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/514054978_1047068187570299_2489024937135531463_n.jpg?stp=c43.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=105&ccb=1-7&_nc_sid=247b10&_nc_ohc=M7xM504-NmEQ7kNvwFRS1fz&_nc_oc=AdksC-BbQGQPFeW2mUjtqf8A82XB0aiB3o81xgqen4tzAAuXPQGXl1UOGBs1teC_9x4&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfOAtD3HnABBgIBsG2wW9MuRv35LkWAOF92EjJrwYqTY5A&oe=686AAABB"
+        }
+      ],
+      "seller": {
+        "name": "Fg Fikh",
+        "id": "61577800208364"
+      },
+      "category": "895487550471874",
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "30020147507600923:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "1646282959383899",
+      "title": "1 Bed 1 Bath Apartment",
+      "price": {
+        "formatted": "$1,100",
+        "amount": 1100,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Bloomfield",
+        "state": "CT",
+        "displayName": "Bloomfield, Connecticut",
+        "address": "Bloomfield, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/498942219_1949822819179584_7637754054167359794_n.jpg?stp=c43.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=109&ccb=1-7&_nc_sid=247b10&_nc_ohc=RQzOglJeQDUQ7kNvwGnjbMW&_nc_oc=Adm2xhPA3J14VslHLAwBasHYEI3rOCTApVe_oetJI74sw5zGlrlawY2bGg7WGZcyu00&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfPEVkQbLOwMIsfCuM_aSzw51DNJjbT8GZBY7o1Dmfca8A&oe=686A8129"
+        }
+      ],
+      "seller": {
+        "name": "Dolores Leasure",
+        "id": "61576257523021"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "9282778325077760:IN_MEMORY_MARKETPLACE_FEED_STORY_ENT:MarketplaceFeedStoryBase:503",
+      "title": null,
+      "price": null,
+      "location": null,
+      "description": null,
+      "images": [],
+      "seller": null,
+      "category": null,
+      "isAvailable": true,
+      "bedrooms": null,
+      "bathrooms": null,
+      "propertyType": null,
+      "postedDate": null,
+      "url": null
+    },
+    {
+      "id": "581915528146284",
+      "title": "1 Bed 1 Bath Apartment",
+      "price": {
+        "formatted": "$890",
+        "amount": 890,
+        "currency": "USD"
+      },
+      "location": {
+        "city": "Avon",
+        "state": "CT",
+        "displayName": "Avon, Connecticut",
+        "address": "Avon, CT"
+      },
+      "description": "1 bedroom · 1 bathroom",
+      "images": [
+        {
+          "url": "https://scontent.fixe7-1.fna.fbcdn.net/v/t45.5328-4/475336052_1305474097168481_4946846704157007318_n.jpg?stp=c0.43.261.261a_dst-jpg_p261x260_tt6&_nc_cat=103&ccb=1-7&_nc_sid=247b10&_nc_ohc=paXGtWs2-SkQ7kNvwEDirMw&_nc_oc=AdmK-IWKGNcESJJ1SqQXExGJ_wvfluHQ1SK5tbh8kIN48Z1RIlGduVsz0l0XivTluak&_nc_zt=23&_nc_ht=scontent.fixe7-1.fna&_nc_gid=4TGDfDYX9QPFt9uo-195aA&oh=00_AfO7znhm1ZaLA1A_Lp3YkSoSo4M_E24md3_1Clzwrvrjpg&oe=686A8EAE"
+        }
+      ],
+      "seller": {
+        "name": "Brandy Favreau",
+        "id": "61572886618406"
+      },
+      "category": "1468271819871448",
+      "isAvailable": true,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "propertyType": "apartment",
+      "postedDate": null,
+      "url": null
+    }
+  ],
+  "metadata": {
+    "extractedAt": "2025-07-02T05:43:05.224Z",
+    "source": "Facebook Marketplace",
+    "totalListings": 24
+  }
+}
