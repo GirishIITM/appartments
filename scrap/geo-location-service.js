@@ -26,4 +26,3 @@ class GeoLocationService {
 }
 
 module.exports = { GeoLocationService };
-module.exports = { GeoLocationService };

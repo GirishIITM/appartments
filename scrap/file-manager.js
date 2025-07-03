@@ -113,6 +113,45 @@ class FileManager {
     }
   }
 
+  saveFacebookData(facebookApartments) {
+    if (!facebookApartments || facebookApartments.length === 0) return;
+
+    // Convert Facebook data to the map-compatible format
+    const facebookJsonData = {
+      timestamp: new Date().toISOString(),
+      totalApartments: facebookApartments.length,
+      apartments: facebookApartments.map(apt => ({
+        ...apt,
+        // Ensure consistent data structure for map view
+        feedvendorid: 'facebook',
+        placardType: 'facebook',
+        url: apt.url || (apt.listingId ? `https://www.facebook.com/marketplace/item/${apt.listingId}` : ''),
+        address: apt.address || apt.streetAddress,
+        pricing: apt.pricing || { rent: '' },
+        bedsBaths: apt.bedsBaths || { beds: '', baths: '', sqft: '' },
+        geoLocation: apt.geoLocation || { latitude: null, longitude: null, source: 'facebook-marketplace' }
+      }))
+    };
+
+    const facebookJsonPath = "appartments/facebook_apartments.json";
+
+    try {
+      // Ensure apartments directory exists
+      if (!fs.existsSync("appartments")) {
+        fs.mkdirSync("appartments");
+      }
+
+      // Save Facebook JSON data
+      fs.writeFileSync(facebookJsonPath, JSON.stringify(facebookJsonData, null, 2));
+      console.log(`Facebook JSON data saved as ${facebookJsonPath}`);
+
+      return facebookJsonPath;
+    } catch (error) {
+      console.error("Error saving Facebook data:", error);
+      return null;
+    }
+  }
+
   escapeCsvValue(value) {
     if (value === null || value === undefined) return "";
     const str = String(value);

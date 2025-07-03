@@ -29,4 +29,15 @@ fetch("https://www.facebook.com/marketplace/103799809658833/apartments-for-rent?
   .then(response => response.text()).then(html => {
     fs = require('fs');
     fs.writeFileSync('facebook-apartments.html', html);
+    console.log('Facebook apartments HTML saved successfully');
+    console.log('HTML size:', html.length, 'characters');
+    
+    // Quick check for marketplace links in the HTML
+    const linkMatches = html.match(/\/marketplace\/item\/\d+/g);
+    if (linkMatches) {
+      console.log('Found', linkMatches.length, 'marketplace item links in HTML');
+    }
   })
+  .catch(error => {
+    console.error('Error fetching Facebook data:', error);
+  });

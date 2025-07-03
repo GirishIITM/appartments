@@ -138,10 +138,10 @@
 
         .popup-link {
             display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
             padding: 6px 12px;
+            color: white;
             border-radius: 4px;
+            background-color: black;
             text-decoration: none;
             font-size: 0.8rem;
             margin-top: 8px;
@@ -303,6 +303,9 @@
         </div>
     </div>
 
+    <!-- <div id="loading" class="loading">
+        Loading apartment locations...
+    </div> -->
 
     <div id="map"></div>
     
@@ -399,24 +402,29 @@
             return `
                 <div class="popup-content">
                     <div class="placard-badge apartments-com" style="background: #28a745; color: white;">Apartments.com</div>
-                    ${apartment.placardType ? `<div class="placard-badge ${placardClass}">${apartment.placardType}</div>` : ''}
+                    ${apartment.placardType && apartment.placardType !== 'facebook' ? `<div class="placard-badge ${placardClass}">${apartment.placardType}</div>` : ''}
                     
                     <div class="popup-title">${apartment.title || 'Apartment Listing'}</div>
                     
-                    ${apartment.address ? `<div class="popup-address">${apartment.address}</div>` : ''}
+                    ${apartment.address || apartment.streetAddress ? `<div class="popup-address">${apartment.address || apartment.streetAddress}</div>` : ''}
                     
-                    ${apartment.rent ? `<div class="popup-price">${apartment.rent}</div>` : ''}
+                    ${apartment.rent || apartment.pricing?.rent ? `<div class="popup-price">${apartment.rent || apartment.pricing?.rent}</div>` : ''}
                     
                     <div class="popup-details">
-                        ${apartment.beds ? `<span class="popup-detail">🛏️ ${apartment.beds} beds</span>` : ''}
-                        ${apartment.baths ? `<span class="popup-detail">🚿 ${apartment.baths} baths</span>` : ''}
-                        ${apartment.sqft ? `<span class="popup-detail">📐 ${apartment.sqft} sq ft</span>` : ''}
+                        ${apartment.beds || apartment.bedsBaths?.beds ? `<span class="popup-detail">🛏️ ${apartment.beds || apartment.bedsBaths?.beds} beds</span>` : ''}
+                        ${apartment.baths || apartment.bedsBaths?.baths ? `<span class="popup-detail">🚿 ${apartment.baths || apartment.bedsBaths?.baths} baths</span>` : ''}
+                        ${apartment.sqft || apartment.bedsBaths?.sqft ? `<span class="popup-detail">📐 ${apartment.sqft || apartment.bedsBaths?.sqft} sq ft</span>` : ''}
                         ${apartment.propertyType ? `<span class="popup-detail">🏠 ${apartment.propertyType}</span>` : ''}
                     </div>
                     
-                    ${apartment.phone ? `<div><a href="tel:${apartment.phone}" class="popup-phone">📞 ${apartment.phone}</a></div>` : ''}
+                    ${apartment.phone || apartment.phone?.number ? `<div><a href="tel:${apartment.phone || apartment.phone?.number}" class="popup-phone">📞 ${apartment.phone || apartment.phone?.number}</a></div>` : ''}
                     
-                    ${apartment.url ? `<a href="${apartment.url}" target="_blank" class="popup-link">View Listing</a>` : ''}
+                    ${apartment.company || apartment.logo?.company ? `<div class="popup-detail">🏢 ${apartment.company || apartment.logo?.company}</div>` : ''}
+                    
+                    ${apartment.url && apartment.url !== '' ? `<a href="${apartment.url}" target="_blank" class="popup-link">View Listing</a>` : 
+                      apartment.listingId ? `<a href="https://www.apartments.com/apartments/${apartment.listingId}/" target="_blank" class="popup-link">View Listing</a>` : 
+                      '<span class="popup-detail">No listing URL available</span>'
+                    }
                 </div>
             `;
         }
@@ -429,17 +437,22 @@
                     
                     <div class="popup-title">${apartment.title || 'Facebook Listing'}</div>
                     
-                    ${apartment.address ? `<div class="popup-address">${apartment.address}</div>` : ''}
+                    ${apartment.address || apartment.streetAddress ? `<div class="popup-address">${apartment.address || apartment.streetAddress}</div>` : ''}
                     
-                    ${apartment.pricing?.rent ? `<div class="popup-price">${apartment.pricing.rent}</div>` : ''}
+                    ${apartment.pricing?.rent || apartment.rent ? `<div class="popup-price">${apartment.pricing?.rent || apartment.rent}</div>` : ''}
                     
                     <div class="popup-details">
-                        ${apartment.bedsBaths?.beds ? `<span class="popup-detail">🛏️ ${apartment.bedsBaths.beds} beds</span>` : ''}
-                        ${apartment.bedsBaths?.baths ? `<span class="popup-detail">🚿 ${apartment.bedsBaths.baths} baths</span>` : ''}
+                        ${apartment.bedsBaths?.beds || apartment.beds ? `<span class="popup-detail">🛏️ ${apartment.bedsBaths?.beds || apartment.beds} beds</span>` : ''}
+                        ${apartment.bedsBaths?.baths || apartment.baths ? `<span class="popup-detail">🚿 ${apartment.bedsBaths?.baths || apartment.baths} baths</span>` : ''}
                         ${apartment.propertyType ? `<span class="popup-detail">🏠 ${apartment.propertyType}</span>` : ''}
                     </div>
                     
-                    ${apartment.url ? `<a href="${apartment.url}" target="_blank" class="popup-link">View Facebook Listing</a>` : ''}
+                    ${apartment.logo?.company || apartment.facebookData?.seller?.name ? `<div class="popup-detail">👤 ${apartment.logo?.company || apartment.facebookData?.seller?.name}</div>` : ''}
+                    
+                    ${apartment.url && apartment.url !== '' ? `<a href="${apartment.url}" target="_blank" class="popup-link">View Facebook Listing</a>` : 
+                      apartment.listingId ? `<a href="https://www.facebook.com/marketplace/item/${apartment.listingId}/" target="_blank" class="popup-link">View on Facebook</a>` : 
+                      '<span class="popup-detail">No listing URL available</span>'
+                    }
                 </div>
             `;
         }
@@ -465,13 +478,18 @@
             });
         }
 
-        // Add Apartments.com data to map
+        // Add Apartments.com data to map - Updated to handle both sources from combined data
         function addApartmentsComToMap(apartments) {
             let validCount = 0;
 
             apartments.forEach(apartment => {
-                const lat = parseFloat(apartment.latitude);
-                const lng = parseFloat(apartment.longitude);
+                // Skip Facebook listings
+                if (apartment.feedvendorid === 'facebook' || apartment.placardType === 'facebook') {
+                    return;
+                }
+
+                const lat = parseFloat(apartment.latitude || apartment.geoLocation?.latitude);
+                const lng = parseFloat(apartment.longitude || apartment.geoLocation?.longitude);
 
                 // Skip if no valid coordinates or placeholder values
                 if (!lat || !lng || isNaN(lat) || isNaN(lng) || (lat === 41.7579 && lng === -72.79674)) {
@@ -496,8 +514,13 @@
             let validCount = 0;
 
             apartments.forEach(apartment => {
-                const lat = apartment.geoLocation?.latitude;
-                const lng = apartment.geoLocation?.longitude;
+                // Only process Facebook listings
+                if (apartment.feedvendorid !== 'facebook' && apartment.placardType !== 'facebook') {
+                    return;
+                }
+
+                const lat = parseFloat(apartment.geoLocation?.latitude || apartment.latitude);
+                const lng = parseFloat(apartment.geoLocation?.longitude || apartment.longitude);
 
                 // Skip if no valid coordinates
                 if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
@@ -544,51 +567,143 @@
             }
         }
 
+        // Function to calculate the best bounds excluding outliers
+        function calculateOptimalBounds(markers) {
+            if (markers.length === 0) return null;
+            
+            // Extract all coordinates
+            const coordinates = markers.map(marker => ({
+                lat: marker.getLatLng().lat,
+                lng: marker.getLatLng().lng
+            }));
+            
+            if (coordinates.length <= 2) {
+                // If we have very few points, just use them all
+                return L.latLngBounds(coordinates.map(coord => [coord.lat, coord.lng]));
+            }
+            
+            // Calculate center point (median to reduce outlier impact)
+            const sortedLats = coordinates.map(c => c.lat).sort((a, b) => a - b);
+            const sortedLngs = coordinates.map(c => c.lng).sort((a, b) => a - b);
+            
+            const centerLat = sortedLats[Math.floor(sortedLats.length / 2)];
+            const centerLng = sortedLngs[Math.floor(sortedLngs.length / 2)];
+            
+            // Calculate distances from center for each point
+            const distances = coordinates.map(coord => {
+                const latDiff = coord.lat - centerLat;
+                const lngDiff = coord.lng - centerLng;
+                return {
+                    coord: coord,
+                    distance: Math.sqrt(latDiff * latDiff + lngDiff * lngDiff)
+                };
+            });
+            
+            // Sort by distance and exclude outliers (top 10% farthest points)
+            distances.sort((a, b) => a.distance - b.distance);
+            const excludeCount = Math.max(0, Math.floor(distances.length * 0.1)); // Remove top 10% outliers
+            const filteredCoordinates = distances
+                .slice(0, distances.length - excludeCount)
+                .map(d => d.coord);
+            
+            // If we filtered too many points, keep at least 80% of original points
+            const minPoints = Math.ceil(coordinates.length * 0.8);
+            const finalCoordinates = filteredCoordinates.length >= minPoints 
+                ? filteredCoordinates 
+                : distances.slice(0, minPoints).map(d => d.coord);
+            
+            // Calculate bounds from filtered coordinates
+            const lats = finalCoordinates.map(c => c.lat);
+            const lngs = finalCoordinates.map(c => c.lng);
+            
+            const bounds = L.latLngBounds([
+                [Math.min(...lats), Math.min(...lngs)],
+                [Math.max(...lats), Math.max(...lngs)]
+            ]);
+            
+            // Add some padding to the bounds
+            const paddingLat = (Math.max(...lats) - Math.min(...lats)) * 0.1;
+            const paddingLng = (Math.max(...lngs) - Math.min(...lngs)) * 0.1;
+            
+            return L.latLngBounds([
+                [Math.min(...lats) - paddingLat, Math.min(...lngs) - paddingLng],
+                [Math.max(...lats) + paddingLat, Math.max(...lngs) + paddingLng]
+            ]);
+        }
+
         // Load and display apartments
         async function loadApartments() {
             try {
                 let apartmentsComCount = 0;
                 let facebookCount = 0;
+                let allApartments = [];
+                let allMarkers = []; // Collect individual markers for bounds calculation
 
-                // Load Apartments.com data
+                // Try to load combined JSON data first (preferred method)
                 try {
-                    const response = await fetch('apartments.csv');
-                    const csvText = await response.text();
-                    const apartments = parseCSV(csvText);
-                    apartmentsComCount = addApartmentsComToMap(apartments);
-                } catch (error) {
-                    console.log('Apartments.com data not available:', error);
-                }
-
-                // Load Facebook data - corrected path
-                try {
-                    const response = await fetch('apartments.json');
+                    const response = await fetch('appartments/apartments.json');
                     const jsonData = await response.json();
                     
-                    // Filter Facebook apartments from the combined data
-                    if (jsonData.apartments) {
-                        const facebookApartments = jsonData.apartments.filter(apt => 
-                            apt.feedvendorid === 'facebook' || apt.placardType === 'facebook'
-                        );
-                        facebookCount = addFacebookToMap(facebookApartments);
+                    if (jsonData.apartments && jsonData.apartments.length > 0) {
+                        allApartments = jsonData.apartments;
+                        console.log(`Loaded ${allApartments.length} total apartments from combined JSON`);
+                        
+                        // Process both data sources from combined data
+                        apartmentsComCount = addApartmentsComToMap(allApartments);
+                        facebookCount = addFacebookToMap(allApartments);
+                        
+                        // Collect all markers for bounds calculation
+                        apartmentsComGroup.eachLayer(marker => allMarkers.push(marker));
+                        facebookGroup.eachLayer(marker => allMarkers.push(marker));
                     }
                 } catch (error) {
-                    console.log('Facebook data not available:', error);
+                    console.log('Combined JSON not available, trying separate sources:', error);
+                    
+                    // Fallback: Load CSV data for Apartments.com
+                    try {
+                        const response = await fetch('appartments/apartments.csv');
+                        const csvText = await response.text();
+                        const apartments = parseCSV(csvText);
+                        apartmentsComCount = addApartmentsComToMap(apartments);
+                        allApartments.push(...apartments);
+                        apartmentsComGroup.eachLayer(marker => allMarkers.push(marker));
+                    } catch (csvError) {
+                        console.log('Apartments.com CSV not available:', csvError);
+                    }
+                    
+                    // Fallback: Try to load separate Facebook JSON
+                    try {
+                        const response = await fetch('appartments/facebook_apartments.json');
+                        const facebookData = await response.json();
+                        if (facebookData.apartments) {
+                            facebookCount = addFacebookToMap(facebookData.apartments);
+                            allApartments.push(...facebookData.apartments);
+                            facebookGroup.eachLayer(marker => allMarkers.push(marker));
+                        }
+                    } catch (fbError) {
+                        console.log('Facebook JSON not available:', fbError);
+                    }
                 }
 
-                // Fit map to show all markers if we have any
-                const allLayers = [];
-                if (apartmentsComCount > 0) allLayers.push(apartmentsComGroup);
-                if (facebookCount > 0) allLayers.push(facebookGroup);
-                
-                if (allLayers.length > 0) {
-                    const group = new L.featureGroup(allLayers);
-                    map.fitBounds(group.getBounds(), { padding: [20, 20] });
+                // Calculate optimal bounds excluding outliers
+                if (allMarkers.length > 0) {
+                    const optimalBounds = calculateOptimalBounds(allMarkers);
+                    if (optimalBounds) {
+                        console.log(`Focusing map on ${allMarkers.length} markers, excluding outliers`);
+                        map.fitBounds(optimalBounds, { 
+                            padding: [30, 30],
+                            maxZoom: 13 // Prevent zooming in too much
+                        });
+                    }
+                } else {
+                    // Fallback to Avon, CT area if no markers
+                    console.log('No markers found, using default Avon, CT view');
+                    map.setView([41.79142, -72.86246], 11);
                 }
 
-                // Update last updated time
+                // Update stats and status
+                console.log(`Final counts - Apartments.com: ${apartmentsComCount}, Facebook: ${facebookCount}`);
                 document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleString()}`;
-                document.getElementById('loading').style.display = 'none';
                 
             } catch (error) {
                 console.error('Error loading apartments:', error);

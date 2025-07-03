@@ -8,7 +8,7 @@ class DataExtractor {
       const apartment = {
         listingId: $el.attr("data-listingid") || "",
         listingKey: $el.attr("data-ck") || "",
-        url: $el.attr("data-url") || "",
+        url: this.extractListingUrl($, $el),
         streetAddress: $el.attr("data-streetaddress") || "",
         countryCode: $el.attr("data-countrycode") || "",
         dataKey: $el.attr("data-ck") || "",
@@ -38,6 +38,61 @@ class DataExtractor {
       );
       return null;
     }
+  }
+
+  extractListingUrl($, $el) {
+    // Method 1: Check data-url attribute
+    let url = $el.attr("data-url");
+    if (url) {
+      // Ensure it's a complete URL
+      if (url.startsWith('/')) {
+        url = 'https://www.apartments.com' + url;
+      }
+      return url;
+    }
+
+    // Method 2: Look for link elements within the placard
+    const linkSelectors = [
+      'a.property-link',
+      'a[href*="/apartments/"]',
+      '.property-title a',
+      '.js-placardTitle a',
+      'h3 a',
+      '.property-information a'
+    ];
+
+    for (const selector of linkSelectors) {
+      const linkEl = $el.find(selector);
+      if (linkEl.length) {
+        let href = linkEl.attr('href');
+        if (href) {
+          if (href.startsWith('/')) {
+            href = 'https://www.apartments.com' + href;
+          }
+          return href;
+        }
+      }
+    }
+
+    // Method 3: Try to construct URL from listing ID
+    const listingId = $el.attr("data-listingid");
+    if (listingId) {
+      return `https://www.apartments.com/apartments/${listingId}/`;
+    }
+
+    // Method 4: Check for any apartments.com link in the element
+    const allLinks = $el.find('a[href]');
+    for (let i = 0; i < allLinks.length; i++) {
+      const href = $(allLinks[i]).attr('href');
+      if (href && (href.includes('apartments.com') || href.includes('/apartments/'))) {
+        if (href.startsWith('/')) {
+          return 'https://www.apartments.com' + href;
+        }
+        return href;
+      }
+    }
+
+    return "";
   }
 
   extractGeoLocation($, element) {

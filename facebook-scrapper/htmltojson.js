@@ -19,6 +19,9 @@ function extractMarketplaceData(htmlContent) {
         extractedData.listings.push(...newFormatData);
     }
 
+    // Extract URLs from DOM elements as fallback
+    const domUrls = extractUrlsFromDOM($);
+
     $('script[type="application/json"]').each((index, element) => {
         try {
             const scriptContent = $(element).text();
@@ -53,6 +56,9 @@ function extractMarketplaceData(htmlContent) {
             console.log(`Skipping inline script ${index}:`, error.message);
         }
     });
+
+    // Match DOM URLs to listings without URLs
+    matchUrlsToListings(extractedData.listings, domUrls);
 
     extractedData.metadata.totalListings = extractedData.listings.length;
     return extractedData;
@@ -216,6 +222,22 @@ function extractListingData(listingObj) {
             listing.id = listingObj.story_key;
         }
 
+        // Extract listing URL
+        if (listingObj.marketplace_listing_url) {
+            listing.url = listingObj.marketplace_listing_url;
+        } else if (listingObj.url) {
+            listing.url = listingObj.url;
+        } else if (listingObj.id) {
+            // Construct Facebook Marketplace URL from ID
+            listing.url = `https://www.facebook.com/marketplace/item/${listingObj.id}`;
+        } else if (listingObj.story_key) {
+            // Try to extract ID from story_key and construct URL
+            const idMatch = listingObj.story_key.match(/(\d+)/);
+            if (idMatch) {
+                listing.url = `https://www.facebook.com/marketplace/item/${idMatch[1]}`;
+            }
+        }
+
         if (listing.title && listing.title.toLowerCase().includes('apartment')) {
             listing.propertyType = 'apartment';
         } else if (listing.title && listing.title.toLowerCase().includes('house')) {
@@ -323,6 +345,40 @@ function extractNewFormatListingData(nodeObj) {
 
         // Extract category
         listing.category = listingData.marketplace_listing_category_id;
+
+        // Extract listing URL - multiple approaches
+        if (listingData.marketplace_listing_url) {
+            listing.url = listingData.marketplace_listing_url;
+        } else if (listingData.url) {
+            listing.url = listingData.url;
+        } else if (nodeObj.url) {
+            listing.url = nodeObj.url;
+        } else if (listingData.id) {
+            // Construct Facebook Marketplace URL from listing ID
+            listing.url = `https://www.facebook.com/marketplace/item/${listingData.id}`;
+        } else if (nodeObj.story_key) {
+            // Try to extract ID from story_key
+            const storyKeyParts = nodeObj.story_key.split(':');
+            if (storyKeyParts.length > 0) {
+                const potentialId = storyKeyParts[0];
+                if (potentialId.match(/^\d+$/)) {
+                    listing.url = `https://www.facebook.com/marketplace/item/${potentialId}`;
+                }
+            }
+        }
+
+        // Additional URL extraction from tracking data
+        if (!listing.url && nodeObj.tracking) {
+            try {
+                const trackingStr = JSON.stringify(nodeObj.tracking);
+                const urlMatch = trackingStr.match(/marketplace\/item\/(\d+)/);
+                if (urlMatch) {
+                    listing.url = `https://www.facebook.com/marketplace/item/${urlMatch[1]}`;
+                }
+            } catch (e) {
+                // Ignore tracking parsing errors
+            }
+        }
 
         // Determine property type
         const titleLower = listing.title.toLowerCase();

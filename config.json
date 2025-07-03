@@ -4,7 +4,7 @@
     "host": "localhost"
   },
   "data": {
-    "baseUrl": "https://api.apartments.com",
+    "baseUrl": "https://www.apartments.com/avon-ct/",
     "endpoints": {
       "apartments": "/apartments_latest.json",
       "search": "/search"
