@@ -51,6 +51,35 @@
             border-bottom: 1px solid #e0e0e0;
             font-size: 0.9rem;
             color: #333;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .data-toggle {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .toggle-btn {
+            padding: 5px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .toggle-btn.facebook.active {
+            background: #1877f2;
+            border-color: #1877f2;
         }
 
         #map {
@@ -169,9 +198,50 @@
             z-index: 2000;
         }
 
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            font-size: 0.9rem;
+        }
+        
+        .legend-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .legend-marker {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .apartments-com {
+            background: #28a745;
+        }
+        
+        .facebook {
+            background: #1877f2;
+        }
+
         /* Custom marker styles */
         .custom-marker {
-            background: #667eea;
+            background: #28a745;
             border: 2px solid white;
             border-radius: 50%;
             width: 25px;
@@ -198,17 +268,35 @@
         .marker-prosumer {
             background: #28a745;
         }
+
+        .facebook-marker {
+            background: #1877f2;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Apartment Locations Map</h1>
-        <p>Avon, CT and surrounding areas</p>
+        <p>Avon, CT and surrounding areas - Multiple Sources</p>
     </div>
 
     <div class="stats-bar">
         <div>
-            <span id="totalMarkers">0</span> apartments shown on map
+            <span id="apartmentsComCount">0</span> Apartments.com | 
+            <span id="facebookCount">0</span> Facebook Marketplace
+        </div>
+        <div class="data-toggle">
+            <button class="toggle-btn active" id="toggleApartmentsCom" onclick="toggleDataSource('apartmentsCom')">
+                Apartments.com
+            </button>
+            <button class="toggle-btn facebook active" id="toggleFacebook" onclick="toggleDataSource('facebook')">
+                Facebook
+            </button>
         </div>
         <div>
             <span id="lastUpdated">Loading...</span>
@@ -216,15 +304,29 @@
     </div>
 
 
-
     <div id="map"></div>
+    
+    <div class="legend">
+        <div class="legend-title">Data Sources</div>
+        <div class="legend-item">
+            <div class="legend-marker apartments-com"></div>
+            <span>Apartments.com</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker facebook"></div>
+            <span>Facebook Marketplace</span>
+        </div>
+    </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
         let map;
-        let markersGroup;
+        let apartmentsComGroup;
+        let facebookGroup;
+        let showApartmentsCom = true;
+        let showFacebook = true;
 
         // Initialize map
         function initMap() {
@@ -237,8 +339,9 @@
                 maxZoom: 18
             }).addTo(map);
 
-            // Create markers group
-            markersGroup = L.layerGroup().addTo(map);
+            // Create separate marker groups for each data source
+            apartmentsComGroup = L.layerGroup().addTo(map);
+            facebookGroup = L.layerGroup().addTo(map);
         }
 
         // Parse CSV data
@@ -289,12 +392,13 @@
             return values;
         }
 
-        // Create marker popup content
-        function createPopupContent(apartment) {
+        // Create marker popup content for Apartments.com
+        function createApartmentsComPopupContent(apartment) {
             const placardClass = apartment.placardType ? `placard-${apartment.placardType}` : 'placard-basic';
             
             return `
                 <div class="popup-content">
+                    <div class="placard-badge apartments-com" style="background: #28a745; color: white;">Apartments.com</div>
                     ${apartment.placardType ? `<div class="placard-badge ${placardClass}">${apartment.placardType}</div>` : ''}
                     
                     <div class="popup-title">${apartment.title || 'Apartment Listing'}</div>
@@ -317,69 +421,173 @@
             `;
         }
 
-        // Create custom marker icon
-        function createMarkerIcon(apartment) {
-            const markerClass = apartment.placardType ? `marker-${apartment.placardType}` : 'custom-marker';
-            
+        // Create marker popup content for Facebook
+        function createFacebookPopupContent(apartment) {
+            return `
+                <div class="popup-content">
+                    <div class="placard-badge facebook" style="background: #1877f2; color: white;">Facebook Marketplace</div>
+                    
+                    <div class="popup-title">${apartment.title || 'Facebook Listing'}</div>
+                    
+                    ${apartment.address ? `<div class="popup-address">${apartment.address}</div>` : ''}
+                    
+                    ${apartment.pricing?.rent ? `<div class="popup-price">${apartment.pricing.rent}</div>` : ''}
+                    
+                    <div class="popup-details">
+                        ${apartment.bedsBaths?.beds ? `<span class="popup-detail">🛏️ ${apartment.bedsBaths.beds} beds</span>` : ''}
+                        ${apartment.bedsBaths?.baths ? `<span class="popup-detail">🚿 ${apartment.bedsBaths.baths} baths</span>` : ''}
+                        ${apartment.propertyType ? `<span class="popup-detail">🏠 ${apartment.propertyType}</span>` : ''}
+                    </div>
+                    
+                    ${apartment.url ? `<a href="${apartment.url}" target="_blank" class="popup-link">View Facebook Listing</a>` : ''}
+                </div>
+            `;
+        }
+
+        // Create custom marker icon for Apartments.com
+        function createApartmentsComMarkerIcon(apartment) {
+            // Always use green for Apartments.com regardless of placard type
             return L.divIcon({
-                className: `custom-marker ${markerClass}`,
+                className: 'custom-marker',
                 iconSize: [25, 25],
                 iconAnchor: [12, 12],
                 popupAnchor: [0, -12]
             });
         }
 
-        // Add apartments to map
-        function addApartmentsToMap(apartments) {
+        // Create custom marker icon for Facebook
+        function createFacebookMarkerIcon() {
+            return L.divIcon({
+                className: 'facebook-marker',
+                iconSize: [25, 25],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -12]
+            });
+        }
+
+        // Add Apartments.com data to map
+        function addApartmentsComToMap(apartments) {
             let validCount = 0;
 
             apartments.forEach(apartment => {
                 const lat = parseFloat(apartment.latitude);
                 const lng = parseFloat(apartment.longitude);
 
+                // Skip if no valid coordinates or placeholder values
+                if (!lat || !lng || isNaN(lat) || isNaN(lng) || (lat === 41.7579 && lng === -72.79674)) {
+                    return;
+                }
+
+                const marker = L.marker([lat, lng], {
+                    icon: createApartmentsComMarkerIcon(apartment)
+                });
+
+                marker.bindPopup(createApartmentsComPopupContent(apartment));
+                apartmentsComGroup.addLayer(marker);
+                validCount++;
+            });
+
+            document.getElementById('apartmentsComCount').textContent = validCount;
+            return validCount;
+        }
+
+        // Add Facebook data to map
+        function addFacebookToMap(apartments) {
+            let validCount = 0;
+
+            apartments.forEach(apartment => {
+                const lat = apartment.geoLocation?.latitude;
+                const lng = apartment.geoLocation?.longitude;
+
                 // Skip if no valid coordinates
                 if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
                     return;
                 }
 
-                // Skip if coordinates are placeholder values
-                if (lat === 41.7579 && lng === -72.79674) {
-                    return;
-                }
-
                 const marker = L.marker([lat, lng], {
-                    icon: createMarkerIcon(apartment)
+                    icon: createFacebookMarkerIcon()
                 });
 
-                marker.bindPopup(createPopupContent(apartment));
-                markersGroup.addLayer(marker);
+                marker.bindPopup(createFacebookPopupContent(apartment));
+                facebookGroup.addLayer(marker);
                 validCount++;
             });
 
-            // Update stats
-            document.getElementById('totalMarkers').textContent = validCount;
-            
-            // Fit map to show all markers if we have any
-            if (validCount > 0) {
-                map.fitBounds(markersGroup.getBounds(), { padding: [20, 20] });
+            document.getElementById('facebookCount').textContent = validCount;
+            return validCount;
+        }
+
+        // Toggle data source visibility
+        function toggleDataSource(source) {
+            if (source === 'apartmentsCom') {
+                showApartmentsCom = !showApartmentsCom;
+                const btn = document.getElementById('toggleApartmentsCom');
+                
+                if (showApartmentsCom) {
+                    map.addLayer(apartmentsComGroup);
+                    btn.classList.add('active');
+                } else {
+                    map.removeLayer(apartmentsComGroup);
+                    btn.classList.remove('active');
+                }
+            } else if (source === 'facebook') {
+                showFacebook = !showFacebook;
+                const btn = document.getElementById('toggleFacebook');
+                
+                if (showFacebook) {
+                    map.addLayer(facebookGroup);
+                    btn.classList.add('active');
+                } else {
+                    map.removeLayer(facebookGroup);
+                    btn.classList.remove('active');
+                }
             }
         }
 
         // Load and display apartments
         async function loadApartments() {
             try {
-                const response = await fetch('apartments_latest.csv');
-                const csvText = await response.text();
+                let apartmentsComCount = 0;
+                let facebookCount = 0;
+
+                // Load Apartments.com data
+                try {
+                    const response = await fetch('apartments.csv');
+                    const csvText = await response.text();
+                    const apartments = parseCSV(csvText);
+                    apartmentsComCount = addApartmentsComToMap(apartments);
+                } catch (error) {
+                    console.log('Apartments.com data not available:', error);
+                }
+
+                // Load Facebook data - corrected path
+                try {
+                    const response = await fetch('apartments.json');
+                    const jsonData = await response.json();
+                    
+                    // Filter Facebook apartments from the combined data
+                    if (jsonData.apartments) {
+                        const facebookApartments = jsonData.apartments.filter(apt => 
+                            apt.feedvendorid === 'facebook' || apt.placardType === 'facebook'
+                        );
+                        facebookCount = addFacebookToMap(facebookApartments);
+                    }
+                } catch (error) {
+                    console.log('Facebook data not available:', error);
+                }
+
+                // Fit map to show all markers if we have any
+                const allLayers = [];
+                if (apartmentsComCount > 0) allLayers.push(apartmentsComGroup);
+                if (facebookCount > 0) allLayers.push(facebookGroup);
                 
-                const apartments = parseCSV(csvText);
-                addApartmentsToMap(apartments);
-                
+                if (allLayers.length > 0) {
+                    const group = new L.featureGroup(allLayers);
+                    map.fitBounds(group.getBounds(), { padding: [20, 20] });
+                }
+
                 // Update last updated time
-                const lastUpdated = apartments.length > 0 && apartments[0].timestamp 
-                    ? new Date(apartments[0].timestamp).toLocaleString()
-                    : 'Unknown';
-                document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdated}`;
-                
+                document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleString()}`;
                 document.getElementById('loading').style.display = 'none';
                 
             } catch (error) {

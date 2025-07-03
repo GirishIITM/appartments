@@ -311,7 +311,18 @@ class ApartmentScrapper {
   }
 
   saveResults() {
-    return this.fileManager.saveResults(this.allApartments);
+    const result = this.fileManager.saveResults(this.allApartments);
+    
+    // Also save Facebook apartments separately for map view
+    const facebookApartments = this.allApartments.filter(apt => 
+      apt.feedvendorid === 'facebook' || apt.placardType === 'facebook'
+    );
+    
+    if (facebookApartments.length > 0) {
+      this.fileManager.saveFacebookData(facebookApartments);
+    }
+    
+    return result;
   }
 }
 

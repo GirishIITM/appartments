@@ -11,7 +11,6 @@ class GeoLocationService {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
-      console.log(data);
 
       if (data.candidates && data.candidates[0]?.geometry?.location) {
         return {
@@ -26,4 +25,5 @@ class GeoLocationService {
   }
 }
 
+module.exports = { GeoLocationService };
 module.exports = { GeoLocationService };
